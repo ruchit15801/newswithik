@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>âš¡ VOID BREAKER â€” Infinite Cyberpunk Runner</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="VOID BREAKER - An ultra-fast cyberpunk infinite runner. Break through the void core in this premium arcade experience.">
+    <meta name="keywords" content="cyberpunk, runner, arcade, game, webgl, neon, void breaker">
+    <meta property="og:title" content="VOID BREAKER â€” Infinite Runner">
+    <meta property="og:description" content="Enter the void in this high-octane cyberpunk infinite runner.">
+    <meta property="og:image" content="assets/thumbnail.png">
+    <meta property="og:type" content="website">
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&family=Audiowide&family=Exo+2:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icon.png">
+
+<!-- Google AdSense Auto Ads / H5 Ad Placement API -->
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script>
+    window.adsbygoogle = window.adsbygoogle || [];
+    var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
+</script>
+</head>
+<body>
+
+    <!-- â•â• SPLASH SCREEN â•â• -->
+    <div id="splash" class="screen">
+        <div class="sp-bg-grid"></div>
+        <div class="sp-horizon"></div>
+        <div class="sp-content">
+            <div class="sp-icon"></div>
+            <h1 class="sp-logo">VOID BREAKER</h1>
+            <p class="sp-sub">Infinite Cyberpunk Runner</p>
+            <div class="sp-div"></div>
+            <div class="sp-best" id="sp-best">BEST: 0m</div>
+            <button class="sp-btn" onclick="showGuide()">ENTER THE VOID</button>
+        </div>
+    </div>
+
+    <!-- â•â• GUIDE / PROTOCOL â•â• -->
+    <div id="guide" class="screen off">
+        <div class="gc">
+            <h2 class="g-title">RUNNER PROTOCOL</h2>
+            <p class="g-sub">âš¡ VOID BREAKER â€” OPERATOR MANUAL</p>
+
+            <div class="sec">
+                <div class="sec-t">â—ˆ OBJECTIVE</div>
+                <div class="cr"><div class="kb">MISSION</div><div class="cd">Navigate the cyberpunk void. Collect energy orbs, dodge hazards, and survive as long as possible.</div></div>
+                <div class="cr"><div class="kb">ZONES</div><div class="cd">Every 500m you enter a new hazard zone. Speed increases and patterns become more complex.</div></div>
+            </div>
+
+            <div class="sec">
+                <div class="sec-t">â—ˆ CONTROLS</div>
+                <div class="cr"><div class="kb">SPACE / â†‘</div><div class="cd">JUMP â€” Press mid-air to DOUBLE JUMP.</div></div>
+                <div class="cr"><div class="kb">â†“ / S</div><div class="cd">SLIDE â€” Duck under barriers and grab low orbs.</div></div>
+                <div class="cr"><div class="kb">SHIFT / X</div><div class="cd">SHIELD â€” Activate energy shield (Uses 1 Energy).</div></div>
+            </div>
+
+            <div class="sec">
+                <div class="sec-t">â—ˆ POWER-UPS</div>
+                <div class="power-grid">
+                    <div class="pw-card"><div class="pw-icon">ðŸ”‹</div><div class="pw-name">ENERGY</div></div>
+                    <div class="pw-card"><div class="pw-icon">ðŸ›¡ï¸</div><div class="pw-name">SHIELD</div></div>
+                    <div class="pw-card"><div class="pw-icon">âš¡</div><div class="pw-name">SURGE</div></div>
+                    <div class="pw-card"><div class="pw-icon">ðŸ§²</div><div class="pw-name">MAGNET</div></div>
+                    <div class="pw-card"><div class="pw-icon">ðŸ’ </div><div class="pw-name">CRYSTAL</div></div>
+                    <div class="pw-card"><div class="pw-icon">ðŸŒ€</div><div class="pw-name">VORTEX</div></div>
+                </div>
+            </div>
+
+            <button class="g-start" onclick="startGame()">âš¡ RUN THE VOID âš¡</button>
+        </div>
+    </div>
+
+    <!-- â•â• HUD â•â• -->
+    <div id="hud">
+        <div class="hb">
+            <span class="hl">HEALTH</span>
+            <div class="bw"><div class="bbg"><div class="bf" id="hp-fill" style="width:100%; background: linear-gradient(90deg, #ff2244, #ff6688);"></div></div></div>
+            <div class="hv" id="hud-hp" style="color:#ff4466">â¤â¤â¤</div>
+            
+            <span class="hl" style="margin-top:10px">ENERGY</span>
+            <div class="bw"><div class="bbg"><div class="bf" id="en-fill" style="width:100%; background: linear-gradient(90deg, #ffcc00, #ffee44);"></div></div></div>
+            <div class="hv" id="hud-shield" style="font-size: 11px; color: var(--neon3);">NO SHIELD</div>
+        </div>
+
+        <div class="hcen">
+            <div class="dist-val" id="hud-dist">0</div>
+            <span class="hl">METERS</span>
+            <div class="zone-badge"><div class="zone-txt" id="hud-zone">SECTOR ZERO</div></div>
+            <div class="hl" id="hud-power" style="margin-top:5px">â€”</div>
+        </div>
+
+        <div class="hb-right">
+            <span class="hl">SCORE</span><div class="hv" id="hud-score">0</div>
+            <span class="hl">COMBO</span><div class="hv" id="hud-combo" style="color:var(--neon2)">Ã—1</div>
+            <span class="hl">BEST</span><div class="hv" id="hud-best" style="font-size: 12px; color: var(--dim);">0m</div>
+        </div>
+    </div>
+
+    <!-- â•â• GAME CANVAS â•â• -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- â•â• MOBILE CONTROLS â•â• -->
+    <div id="mob-ctrl">
+        <div class="ctrl-btn mob-jump" onmousedown="event.preventDefault(); doJump()" ontouchstart="event.preventDefault(); doJump()">
+            <span>â†‘</span>
+            <span style="font-size: 9px; letter-spacing: 1px;">JUMP</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="ctrl-btn mob-shield" onmousedown="event.preventDefault(); doShield()" ontouchstart="event.preventDefault(); doShield()">
+                <span>ðŸ›¡</span>
+                <span>SHIELD</span>
+            </div>
+        </div>
+        <div class="ctrl-btn mob-slide" onmousedown="event.preventDefault(); doSlide()" ontouchstart="event.preventDefault(); doSlide()">
+            <span>â†“</span>
+            <span style="font-size: 9px; letter-spacing: 1px;">SLIDE</span>
+        </div>
+    </div>
+
+    <!-- â•â• OVERLAYS â•â• -->
+    <div id="combo-flash"></div>
+    <div id="countdown"></div>
+
+    <div id="ov">
+        <h2 class="ov-t" id="ov-t">TERMINATED</h2>
+        <p class="ov-s">THE VOID CLAIMS ANOTHER RUNNER...</p>
+        <div class="ov-st" id="ov-st"></div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+            <button class="ob" onclick="restartGame()">RUN AGAIN</button>
+            <button class="ob" style="opacity:0.6;" onclick="goMenu()">MAIN MENU</button>
+        </div>
+    </div>
+
+    <div class="toast-el" id="toast"></div>
+
+    <!-- Game Logic -->
+    <script src="js/main.js"></script>
+</body>
+</html>

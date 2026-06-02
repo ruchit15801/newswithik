@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build artifacts (keep dist/ — it's the compiled game)
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.suo
+*.user
+
+# TypeScript source maps (optional, keep compiled output)
+*.map
+
+# Temp files
+*.tmp
+*.temp

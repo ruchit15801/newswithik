@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Play Game | VHCTA Games</title>
+
+    <!-- PWA & Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#12121A">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║        GOOGLE H5 AD PLACEMENT API — STEP 1: LOAD THE SDK        ║
+    ║  • data-ad-frequency-hint="30s"  → min 30s between each break   ║
+    ║  • Must be async, in <head>, same document as game canvas        ║
+    ╚══════════════════════════════════════════════════════════════════╝
+    -->
+    <script async
+        data-ad-frequency-hint="30s"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330"
+        crossorigin="anonymous">
+    </script>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║     GOOGLE H5 AD PLACEMENT API — STEP 2: BOILERPLATE INIT       ║
+    ║  This MUST come immediately after the adsbygoogle.js tag.        ║
+    ║  adBreak()  → triggers an ad break (preroll, interstitial, etc.) ║
+    ║  adConfig() → configures ad behaviour (frequency, sound, etc.)   ║
+    ╚══════════════════════════════════════════════════════════════════╝
+    -->
+    <script>
+        window.adsbygoogle = window.adsbygoogle || [];
+        var adBreak = adConfig = function(o) { adsbygoogle.push(o); }
+    </script>
+
+    <style>
+        :root {
+            --bg: #12121A;
+            --gold: #C9A84C;
+            --gold-light: #F0D080;
+            --grad-gold: linear-gradient(135deg, var(--gold-light), var(--gold));
+            --shadow-gold: 0 4px 14px rgba(201, 168, 76, 0.4);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background: var(--bg);
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* ── Full-screen iframe (z:1 — lowest, under everything) ── */
+        #game-iframe {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            border: none;
+            background: #000;
+            z-index: 1;
+        }
+
+        /* ── Top navigation bar ── */
+        .top-bar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 56px;
+            background: rgba(10, 10, 18, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            z-index: 9999;
+            transform: translateY(0);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+        }
+        .top-bar.hidden { transform: translateY(-100%); }
+
+        .back-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            padding: 7px 20px 7px 13px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: all 0.22s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .back-btn:hover {
+            background: var(--grad-gold);
+            color: #000;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.35rem;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .logo-text span { color: rgba(255,255,255,0.65); }
+
+        /* ── Floating toggle (shown when top-bar is hidden) ── */
+        .toggle-btn {
+            position: fixed;
+            top: 12px; right: 12px;
+            width: 40px; height: 40px;
+            background: rgba(10, 10, 18, 0.9);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 50%;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9998;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: opacity 0.28s ease, transform 0.28s ease, background 0.22s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.7);
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.7);
+        }
+        .toggle-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+        .toggle-btn:hover { background: var(--gold); color: #000; }
+
+        /* ══════════════════════════════════════════════════════
+           PRELOADER / AD BREAK SCREEN
+           This is the screen shown WHILE the preroll ad plays.
+           It must be full-screen so the ad can fully cover it.
+           z-index: 20000 — above everything including the iframe.
+        ══════════════════════════════════════════════════════ */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            transition: opacity 0.5s ease;
+        }
+        #loader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #loader.gone { display: none; }
+
+        .loader-inner { text-align: center; }
+
+        .spinner {
+            width: 54px; height: 54px;
+            border: 4px solid rgba(201, 168, 76, 0.15);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.85s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loading-text {
+            color: var(--gold-light);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+        .loading-game-name {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+            margin-top: 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+
+        /* Ad break status text — shows what's happening */
+        #ad-status {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.3);
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            z-index: 20001;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        /* ── Error screen ── */
+        #error-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 19999;
+            text-align: center;
+            padding: 2rem;
+            gap: 1rem;
+        }
+        #error-screen.show { display: flex; }
+        #error-screen h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--gold);
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+        #error-screen p { color: rgba(255,255,255,0.55); font-size: 0.9rem; margin: 0; }
+        #error-screen a {
+            margin-top: 0.5rem;
+            background: var(--grad-gold);
+            color: #000;
+            font-weight: 700;
+            padding: 10px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+        #error-screen a:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PRELOADER / AD BREAK CONTAINER                                  ║
+    ║  This full-screen div is what the preroll ad renders OVER.       ║
+    ║  Per Google spec: "The ad must always fully cover the enclosing  ║
+    ║  document." — the loader IS the full document at this moment.    ║
+    ╚══════════════════════════════════════════════════════════════════╝
+    -->
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="spinner"></div>
+            <div class="loading-text">LOADING GAME</div>
+            <div class="loading-game-name" id="loading-game-name"></div>
+        </div>
+    </div>
+
+    <!-- Small status text at bottom of loader screen -->
+    <div id="ad-status"></div>
+
+    <!-- Error screen -->
+    <div id="error-screen">
+        <h2>Game Not Found</h2>
+        <p>Something went wrong loading this game.</p>
+        <a href="/">← Back to Home</a>
+    </div>
+
+    <!-- Top navigation bar (overlay over the game iframe) -->
+    <div class="top-bar hidden" id="top-bar">
+        <a href="#" class="back-btn" id="back-btn">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+            </svg>
+            BACK
+        </a>
+        <a href="/" class="logo-text">VHCTA<span>GAMES</span></a>
+    </div>
+
+    <!-- Floating menu button — appears once top-bar auto-hides -->
+    <div class="toggle-btn" id="toggle-btn" onclick="showTopBar()" title="Show menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+    </div>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  GAME IFRAME                                                     ║
+    ║  allow="autoplay" — REQUIRED by Google for ads inside iframes   ║
+    ║  src is set by JS AFTER the preroll ad completes (not before)   ║
+    ╚══════════════════════════════════════════════════════════════════╝
+    -->
+    <iframe
+        id="game-iframe"
+        src=""
+        title="Game"
+        allow="autoplay; fullscreen; xr-spatial-tracking"
+        allowfullscreen
+        scrolling="no"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock allow-top-navigation-by-user-activation">
+    </iframe>
+
+    <!-- STEP 3: Load game catalogue -->
+    <script src="/js/games.js?v=6"></script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        /* ── DOM refs ── */
+        var loader      = document.getElementById('loader');
+        var adStatus    = document.getElementById('ad-status');
+        var errorScreen = document.getElementById('error-screen');
+        var iframe      = document.getElementById('game-iframe');
+        var topBar      = document.getElementById('top-bar');
+        var toggleBtn   = document.getElementById('toggle-btn');
+        var loadingName = document.getElementById('loading-game-name');
+
+        var hideTimer   = null;
+        var loaderTimer = null;
+        var gameLoaded  = false;
+
+        /* ── Parse URL params — supports ?slug= and ?id= ── */
+        var urlParams = new URLSearchParams(window.location.search);
+        var slug   = urlParams.get('slug');
+        var gameId = urlParams.get('id');
+
+        /* ── Find game record ── */
+        var game = null;
+        if (window.GAMES && Array.isArray(window.GAMES)) {
+            if (slug)            game = window.GAMES.find(function(g){ return g.slug === slug; });
+            if (!game && gameId) game = window.GAMES.find(function(g){ return g.id   === gameId; });
+            if (!game && slug)   game = window.GAMES.find(function(g){ return g.id   === slug; });
+            if (!game && gameId) game = window.GAMES.find(function(g){ return g.slug === gameId; });
+        }
+
+        /* ── Game not found → show error ── */
+        if (!game) {
+            loader.classList.add('fade-out');
+            setTimeout(function(){ loader.classList.add('gone'); }, 600);
+            errorScreen.classList.add('show');
+            return;
+        }
+
+        /* ── Update title + loader text ── */
+        document.title = 'Play ' + game.title + ' | VHCTA Games';
+        if (loadingName) loadingName.textContent = game.title;
+
+        /* ── Build safe, encoded path (handles folder names with spaces) ── */
+        var rawPath  = game.path.startsWith('/') ? game.path : '/' + game.path;
+        var safePath = encodeURI(rawPath);
+
+        /* ════════════════════════════════════════════════════════════
+           CORE FUNCTION: Load the actual game into the iframe.
+           This is called AFTER the preroll ad completes (or if no ad).
+        ════════════════════════════════════════════════════════════ */
+        function loadGame() {
+            if (gameLoaded) return;
+            gameLoaded = true;
+
+            if (adStatus) adStatus.textContent = '';
+
+            /* Set iframe src — game loads now */
+            iframe.src = safePath;
+
+            /* Dismiss loader once iframe fires load, or after 8s max */
+            function dismissLoader() {
+                clearTimeout(loaderTimer);
+                loader.classList.add('fade-out');
+                setTimeout(function(){ loader.classList.add('gone'); }, 550);
+
+                /* Start top-bar auto-hide timer once game is visible */
+                showTopBar();
+            }
+
+            iframe.addEventListener('load', dismissLoader, { once: true });
+            loaderTimer = setTimeout(dismissLoader, 8000);
+        }
+
+        /* ════════════════════════════════════════════════════════════
+           H5 AD PLACEMENT API — STEP 4: adConfig()
+           Configure global ad behaviour ONCE at startup.
+           • preloadAdBreaks:'on'  → SDK preloads the next ad in background
+           • sound:'on'            → allow sound in ads (better fill rate)
+           • onReady callback      → fires when SDK is initialised and
+                                     ready to serve ads
+        ════════════════════════════════════════════════════════════ */
+        adConfig({
+            preloadAdBreaks: 'on',
+            sound: 'on',
+            onReady: function () {
+                /*
+                ════════════════════════════════════════════════════════
+                H5 AD PLACEMENT API — STEP 5: adBreak() — PREROLL
+                type:'preroll' = interstitial shown BEFORE the game
+                  starts. This is the highest-value placement type
+                  and is shown every time the user opens a game.
+
+                adBreakDone(info) fires always — whether an ad was
+                  shown, skipped, or no ad was available.
+                  info.breakStatus values:
+                    'viewed'          → ad fully watched ✅ REVENUE
+                    'dismissed'       → user skipped
+                    'noAdPreloaded'   → no ad to show
+                    'error'           → SDK error
+                  We call loadGame() in ALL cases so the game
+                  ALWAYS loads after the ad attempt.
+                ════════════════════════════════════════════════════════
+                */
+                adBreak({
+                    type: 'preroll',
+                    adBreakDone: function (info) {
+                        loadGame();
+                    }
+                });
+            }
+        });
+
+        /*
+        ════════════════════════════════════════════════════════════
+        SAFETY NET: If adsbygoogle.js fails to load (ad blocker,
+        network error, slow connection) the SDK never calls onReady,
+        so loadGame() would never be called.
+
+        We wait 3.5s — if game hasn't started loading by then,
+        we load it directly (graceful fallback).
+        ════════════════════════════════════════════════════════════
+        */
+        setTimeout(function () {
+            if (!gameLoaded) {
+                loadGame();
+            }
+        }, 3500);
+
+        /* ══════════════════════════════════════════════════════════
+           TOP-BAR AUTO-HIDE LOGIC
+        ══════════════════════════════════════════════════════════ */
+        function hideTopBar() {
+            topBar.classList.add('hidden');
+            toggleBtn.classList.add('visible');
+        }
+
+        function showTopBar() {
+            topBar.classList.remove('hidden');
+            toggleBtn.classList.remove('visible');
+            resetHideTimer();
+        }
+
+        function resetHideTimer() {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideTopBar, 4000);
+        }
+
+        /* Expose globally so onclick="showTopBar()" works */
+        window.showTopBar = showTopBar;
+
+        /* Show bar when mouse enters top 70px (desktop) */
+        document.addEventListener('mousemove', function(e) {
+            if (!gameLoaded) return;
+            if (e.clientY < 70 && topBar.classList.contains('hidden')) showTopBar();
+        });
+
+        /* Show bar when tapping top area (mobile) */
+        document.addEventListener('touchstart', function(e) {
+            if (!gameLoaded) return;
+            if (e.touches[0] && e.touches[0].clientY < 70) showTopBar();
+        }, { passive: true });
+
+        /* Click anywhere near top also works */
+        document.addEventListener('click', function(e) {
+            if (!gameLoaded) return;
+            if (e.clientY < 70) showTopBar();
+        });
+
+        /* Safe back button click */
+        if (backBtn) {
+            backBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.history.back();
+            });
+        }
+
+        /* Don't auto-hide while hovering the bar */
+        topBar.addEventListener('mouseenter', function(){ clearTimeout(hideTimer); });
+        topBar.addEventListener('mouseleave', resetHideTimer);
+
+    })();
+    </script>
+</body>
+</html>

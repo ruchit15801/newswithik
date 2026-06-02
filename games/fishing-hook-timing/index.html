@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fishing Hook Timing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/thumb.png">
+
+<!-- Google AdSense Auto Ads / H5 Ad Placement API -->
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script>
+    window.adsbygoogle = window.adsbygoogle || [];
+    var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
+</script>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="scoreDisplay">CATCH: $0</div>
+            <div id="timeDisplay">TIME: 60</div>
+            
+            <div id="startScreen" class="screen active">
+                <h1>NEON FISHING</h1>
+                <p>Tap to drop hook. Catch the bright fish!</p>
+                <button id="startBtn">CAST LINE</button>
+            </div>
+
+            <div id="gameOverScreen" class="screen">
+                <h1>TIME'S UP</h1>
+                <p>TOTAL HAUL: <span id="finalScore">$0</span></p>
+                <button id="restartBtn">FISH AGAIN</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

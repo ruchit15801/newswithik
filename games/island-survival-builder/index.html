@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Island Survival Builder</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+
+<!-- Google AdSense Auto Ads / H5 Ad Placement API -->
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script>
+    window.adsbygoogle = window.adsbygoogle || [];
+    var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
+</script>
+</head>
+<body>
+    <!-- Main Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Global Illumination Overlay -->
+    <div id="lightingOverlay"></div>
+
+    <!-- UI Overlay container -->
+    <div id="uiContainer" class="hidden">
+        
+        <!-- HUD -->
+        <div id="survivalHud">
+            <div class="stat-bar-container">
+                <div class="stat-icon heart-icon">â¤</div>
+                <div class="stat-bar bg-dark">
+                    <div id="healthFill" class="stat-fill health-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="stat-bar-container">
+                <div class="stat-icon hunger-icon">ðŸ—</div>
+                <div class="stat-bar bg-dark">
+                    <div id="hungerFill" class="stat-fill hunger-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="stat-bar-container">
+                <div class="stat-icon energy-icon">âš¡</div>
+                <div class="stat-bar bg-dark">
+                    <div id="energyFill" class="stat-fill energy-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+            
+            <div id="timeIndicator">
+                <span id="timeIcon">â˜€ï¸</span> Day <span id="dayCount">1</span>
+            </div>
+        </div>
+
+        <!-- Inventory Quick Bar -->
+        <div id="quickBar">
+            <div class="inv-slot active" data-slot="0"><div class="item-img ax-img"></div><div class="item-count" id="count-wood">0</div></div>
+            <div class="inv-slot" data-slot="1"><div class="item-img pick-img"></div><div class="item-count" id="count-stone">0</div></div>
+            <div class="inv-slot" data-slot="2"><div class="item-img food-img"></div><div class="item-count" id="count-food">0</div></div>
+            <div class="inv-slot" data-slot="3"><div class="item-img water-img"></div><div class="item-count" id="count-water">0</div></div>
+        </div>
+
+        <!-- Action Buttons (Mobile) -->
+        <div id="mobileControls">
+            <div id="joystickZone">
+                <div id="joystickBase"><div id="joystickStick"></div></div>
+            </div>
+            <div id="actionButtons">
+                <button class="action-btn" id="btnInteract">ðŸ–ï¸</button>
+                <button class="action-btn" id="btnHit">âš”ï¸</button>
+            </div>
+        </div>
+        
+        <!-- Top Right Menu Icons -->
+        <div id="topMenu">
+            <button class="menu-btn" id="btnCraft">ðŸª“ Craft</button>
+            <button class="menu-btn" id="btnBuild">ðŸ  Build</button>
+            <button class="menu-icon-btn" id="btnSound">ðŸ”Š</button>
+        </div>
+
+    </div>
+
+    <!-- Crafting Window -->
+    <div id="craftingWindow" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-btn" id="closeCrafting">Ã—</button>
+            <h2 class="modal-title">Crafting</h2>
+            <div class="craft-grid">
+                <!-- Recipes populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Building Window -->
+    <div id="buildingWindow" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-btn" id="closeBuilding">Ã—</button>
+            <h2 class="modal-title">Build Structures</h2>
+            <div class="build-grid">
+                <!-- Build options populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu / Start Screen -->
+    <div id="startScreen" class="overlay-full active">
+        <div class="main-menu-content">
+            <div class="logo-container">
+                <img src="assets/images/thumbnail.png" alt="Island Survival Builder Thumbnail" class="thumbnail-img">
+                <h1 class="game-title">Island Survival Builder</h1>
+            </div>
+            
+            <div class="instructions">
+                <h3>Survival Guide</h3>
+                <ul>
+                    <li>ðŸŒ² <b>Collect</b> Wood and Stone from nature.</li>
+                    <li>ðŸ— <b>Hunt/Forage</b> for Food to survive hunger.</li>
+                    <li>ðŸª“ <b>Craft</b> tools to gather faster.</li>
+                    <li>ðŸ  <b>Build</b> a shelter & campfire for the night.</li>
+                    <li>ðŸŒ™ Beware of the dangers hiding in the dark!</li>
+                </ul>
+            </div>
+            
+            <button id="btnStartGame" class="btn-primary">START SURVIVAL</button>
+        </div>
+    </div>
+    
+    <!-- Death Screen -->
+    <div id="deathScreen" class="overlay-full hidden">
+        <div class="death-content">
+            <h1 class="death-title">YOU DIED</h1>
+            <p id="deathReason">You succumbed to the wilderness.</p>
+            <p>Days Survived: <span id="finalDays"></span></p>
+            <button id="btnRestart" class="btn-primary mt-2">RESPAWN</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
