@@ -102,7 +102,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const start     = (currentPage - 1) * itemsPerPage;
         const paginated = filtered.slice(start, start + itemsPerPage);
 
-        gameGrid.innerHTML = paginated.map((game, i) => buildCard(game, i, false)).join('');
+        let html = '';
+        paginated.forEach((game, i) => {
+            html += buildCard(game, i, false);
+            // Insert AD 2 after the first game ONLY on the first page when showing all games
+            if (i === 0 && currentPage === 1 && currentFilter === 'all' && !searchQuery) {
+                html += `
+                <div class="ad-container ad-container-in-grid">
+                    <div class="ad-label">ADVERTISEMENT</div>
+                    <!-- 101Di2 -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-2738438146721203"
+                         data-ad-slot="2424772370"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                </div>`;
+            }
+        });
+        gameGrid.innerHTML = html;
+
+        // Initialize the injected Ad
+        if (currentPage === 1 && currentFilter === 'all' && !searchQuery) {
+            try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        }
 
         if (paginationControls) {
             if (totalPages > 1) {

@@ -43,6 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const thumbSrc = game.thumbnail ? `/${game.thumbnail}` : placeholder;
 
     detailsContent.innerHTML = `
+        <!-- AD 3: Top of Details Card -->
+        <div class="ad-container" style="margin: 0 auto 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent;">
+            <div class="ad-label">ADVERTISEMENT</div>
+            <!-- 101Di3 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2738438146721203"
+                 data-ad-slot="5733461990"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
         <div class="game-hero">
             <img src="${thumbSrc}" alt="${game.title} - Play Free Online" class="hero-thumb" onerror="this.onerror=null; this.src='${placeholder}';">
         </div>
@@ -59,6 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="/play.html?id=${game.id}" class="play-btn-large">Play Now</a>
         </div>
 
+        <!-- AD 3: Middle of Details Card -->
+        <div class="ad-container" style="margin: 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent;">
+            <div class="ad-label">ADVERTISEMENT</div>
+            <!-- 101Di3 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2738438146721203"
+                 data-ad-slot="5733461990"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
         <div class="description-box">
             <div class="description-section">
                 <h3>About ${game.title}</h3>
@@ -71,6 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     `;
+    
+    // Initialize injected ads
+    setTimeout(() => {
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    }, 100);
     
     // Update Page Title & SEO Meta Tags
     const fullTitle = `Play ${game.title} Online - Free Games | VHCTA Games`;

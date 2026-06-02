@@ -197,6 +197,40 @@ header{
 }
 @keyframes coinUp{0%{opacity:0;transform:translate(0,-50%)scale(.5);}20%{opacity:1;transform:translate(8px,-80%)scale(1.15);}100%{opacity:0;transform:translate(14px,-155%)scale(1);}}
 
+/* ── Advertisements ── */
+.ad-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 1.5rem auto 2rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--s2);
+  border-radius: var(--rad);
+  padding: 1rem 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border: 1px solid var(--border);
+}
+.ad-container-in-grid {
+  grid-column: 1 / -1;
+  margin: 0.5rem 0 1.5rem 0;
+}
+.ad-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+.ad-container ins.adsbygoogle {
+  width: 100%;
+  min-height: 100px;
+  display: block;
+}
+
 /* ── Controls ── */
 .controls{
   margin-top:16px;display:flex;flex-direction:column;gap:12px;
