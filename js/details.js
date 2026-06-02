@@ -1,3 +1,65 @@
+// --- COIN SYSTEM LOGIC ---
+function getCoins() {
+    return parseInt(localStorage.getItem('vhcta_coins'), 10) || 5;
+}
+function setCoins(amount) {
+    localStorage.setItem('vhcta_coins', amount);
+    const balanceAmountEl = document.getElementById('balance-amount');
+    if (balanceAmountEl) balanceAmountEl.textContent = amount;
+}
+
+// Global function for handling "Play Now" click with Rewarded Ad & Coins
+window.handlePlayClick = function(gameId) {
+    let coins = getCoins();
+    const btn = document.getElementById('play-btn-main');
+    
+    // Cost to play is 10 coins
+    if (coins >= 10) {
+        // Deduct 10 coins and play!
+        setCoins(coins - 10);
+        window.location.href = '/play.html?id=' + gameId;
+    } else {
+        // Not enough coins! Show Rewarded Ad to earn 10 coins
+        if (typeof window.adBreak === 'function') {
+            // Fallback timer just in case adBreak is completely stubbed
+            let adFailed = setTimeout(() => {
+                setCoins(getCoins() + 10);
+                if (btn) btn.innerHTML = 'Play Now (-10 🪙)';
+            }, 3500);
+
+            window.adBreak({
+                type: 'reward',
+                name: 'earn_coins_reward',
+                beforeReward: function(showAdFn) {
+                    clearTimeout(adFailed);
+                    if (btn) btn.innerHTML = 'Loading Ad...';
+                    showAdFn();
+                },
+                adDismissed: function() {
+                    alert('You must watch the full video to earn 🪙 coins!');
+                    if (btn) btn.innerHTML = 'Watch Ad for Coins (+10 🪙)';
+                },
+                adViewed: function() {
+                    setCoins(getCoins() + 10);
+                    // Automatically play after rewarding to keep it smooth!
+                    setCoins(getCoins() - 10);
+                    window.location.href = '/play.html?id=' + gameId;
+                },
+                adBreakDone: function(placementInfo) {
+                    // Safety reset
+                    if (btn && btn.innerHTML === 'Loading Ad...') {
+                         btn.innerHTML = 'Watch Ad for Coins (+10 🪙)';
+                    }
+                }
+            });
+        } else {
+            // AdBlocker fallback: give free coins so they aren't stuck
+            setCoins(getCoins() + 10);
+            if (btn) btn.innerHTML = 'Play Now (-10 🪙)';
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const detailsContent = document.getElementById('details-content');
     
@@ -68,7 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <div style="margin: 2rem 0;">
-            <a href="/play.html?id=${game.id}" class="play-btn-large">Play Now</a>
+            <a href="javascript:void(0)" id="play-btn-main" onclick="handlePlayClick('${game.id}')" class="play-btn-large">
+                ${getCoins() >= 10 ? 'Play Now (-10 🪙)' : 'Watch Ad for Coins (+10 🪙)'}
+            </a>
         </div>
 
         <!-- AD 3: Middle of Details Card -->
