@@ -10,7 +10,7 @@ const results = [
     ['adsbygoogle.js tag',        content.includes('pagead2.googlesyndication.com')],
     ['adBreak boilerplate',       content.includes('adBreak = adConfig')],
     ['data-ad-frequency-hint',    content.includes('data-ad-frequency-hint')],
-    ['publisher ID',              content.includes('ca-pub-9408433736996330')],
+    ['publisher ID',              content.includes('ca-pub-2738438146721203')],
     ['iframe allow=autoplay',     content.includes('allow="autoplay')],
     ['iframe sandbox set',        content.includes('sandbox=')],
     ['games.js loaded',           content.includes('/js/games.js')],

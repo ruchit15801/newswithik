@@ -8,7 +8,7 @@ export const TOTAL_WAVES = 20;
 
 // Tower definitions
 export const TOWER_DEFS = {
-  archer:  { name:'Archer',      icon:'🏹', cost:50,  dmg:18,  range:3.2, rate:45,  splash:0,  slow:0,    chain:0, color:'#8b6914', upgCost:60,  maxLv:3, desc:'Fast ranged attack' },
+  archer:  { name:'Archer',      icon:'🏹', cost:50,  dmg:18,  range:3.2, rate:45,  splash:0,  slow:0,    chain:0, color:'#B8860B', upgCost:60,  maxLv:3, desc:'Fast ranged attack' },
   fire:    { name:'Fire Mage',   icon:'🔥', cost:100, dmg:28,  range:2.8, rate:55,  splash:1.2,slow:0,    chain:0, color:'#cc3300', upgCost:110, maxLv:3, desc:'Splash + burn DoT' },
   frost:   { name:'Frost',       icon:'❄️', cost:80,  dmg:12,  range:3.0, rate:50,  splash:0,  slow:0.5,  chain:0, color:'#1a8ccc', upgCost:90,  maxLv:3, desc:'Slows enemies 50%' },
   thunder: { name:'Thunder',     icon:'⚡', cost:150, dmg:45,  range:3.5, rate:70,  splash:0,  slow:0,    chain:3, color:'#8844cc', upgCost:160, maxLv:3, desc:'Chains to 3 enemies' },

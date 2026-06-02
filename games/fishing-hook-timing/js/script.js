@@ -243,7 +243,7 @@ function drawBackground() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Draw Boat silhouette
-    ctx.fillStyle = '#0a0a0f';
+    ctx.fillStyle = '#030305';
     ctx.beginPath();
     ctx.arc(canvas.width/2, -100, 150, 0, Math.PI*2);
     ctx.fill();

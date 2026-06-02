@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ðŸ‰ DRAGON TOWER â€” Epic Kingdom Defense</title>
+    <title>ðŸ‰ DRAGON TOWER — Epic Kingdom Defense</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="A premium medieval tower defense game. Defend your kingdom against waves of dragons and dark forces in Dragon Tower.">
@@ -12,7 +12,7 @@
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="ðŸ‰ DRAGON TOWER â€” Epic Kingdom Defense">
+    <meta property="og:title" content="ðŸ‰ DRAGON TOWER — Epic Kingdom Defense">
     <meta property="og:description" content="Defuse the darkness. Build towers, slay dragons, and save the realm.">
     <meta property="og:image" content="./assets/thumbnail.png">
     
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="./css/style.css?v=2">
 
 <!-- Google AdSense Auto Ads / H5 Ad Placement API -->
-<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2738438146721203" crossorigin="anonymous"></script>
 <script>
     window.adsbygoogle = window.adsbygoogle || [];
     var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
@@ -32,7 +32,7 @@
 </head>
 <body>
 
-    <!-- â•â•â•â•â•â• SPLASH â•â•â•â•â•â• -->
+    <!-- ══════ SPLASH ══════ -->
     <div id="splash" class="screen">
         <div class="splash-content">
             <div class="game-title">DRAGON TOWER</div>
@@ -41,13 +41,13 @@
         </div>
     </div>
 
-    <!-- â•â•â•â•â•â• GUIDE â•â•â•â•â•â• -->
+    <!-- ══════ GUIDE ══════ -->
     <div id="guide" class="screen off">
         <div class="guide-card">
             <div class="guide-title">Commander's Codex</div>
             
             <div class="g-section">
-                <div class="g-section-title">âš” OBJECTIVE</div>
+                <div class="g-section-title">⚔ OBJECTIVE</div>
                 <div class="g-row"><div class="g-key">GOAL</div><div>Stop enemies from reaching the Kingdom Gate. 20 leaks means defeat!</div></div>
                 <div class="g-row"><div class="g-key">GOLD</div><div>Slay enemies to earn gold. Build and upgrade towers.</div></div>
             </div>
@@ -63,11 +63,11 @@
         </div>
     </div>
 
-    <!-- â•â•â•â•â•â• HUD â•â•â•â•â•â• -->
+    <!-- ══════ HUD ══════ -->
     <div id="hud">
         <div class="hud-block">
             <div class="hud-label">Kingdom HP</div>
-            <div class="hud-val" id="hud-hp">â¤ 20</div>
+            <div class="hud-val" id="hud-hp">❤ 20</div>
             <div class="hp-bar-bg"><div class="hp-bar-fill" id="hp-fill"></div></div>
         </div>
         <div class="hud-block" style="align-items: center;">
@@ -82,21 +82,21 @@
         </div>
     </div>
 
-    <!-- â•â•â•â•â•â• CANVAS â•â•â•â•â•â• -->
+    <!-- ══════ CANVAS ══════ -->
     <canvas id="gameCanvas"></canvas>
 
-    <!-- â•â•â•â•â•â• CTRL â•â•â•â•â•â• -->
+    <!-- ══════ CTRL ══════ -->
     <div id="ctrl-btns">
-        <div class="ctrl-btn" id="speed-btn" onclick="toggleSpeed()">â–¶â–¶</div>
-        <div class="ctrl-btn" id="pause-btn" onclick="togglePause()">â¸</div>
+        <div class="ctrl-btn" id="speed-btn" onclick="toggleSpeed()">▶▶</div>
+        <div class="ctrl-btn" id="pause-btn" onclick="togglePause()">⏸</div>
     </div>
 
-    <!-- â•â•â•â•â•â• PALETTE â•â•â•â•â•â• -->
+    <!-- ══════ PALETTE ══════ -->
     <div id="tower-palette">
         <div id="tower-row" style="display: flex; gap: 10px;"></div>
     </div>
 
-    <!-- â•â•â•â•â•â• OVERLAY â•â•â•â•â•â• -->
+    <!-- ══════ OVERLAY ══════ -->
     <div id="game-overlay">
         <div class="ov-title" id="ov-title">GAME OVER</div>
         <div id="ov-stats" style="display: flex; gap: 20px; margin-bottom: 30px;"></div>
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <!-- â•â•â•â•â•â• TOAST â•â•â•â•â•â• -->
+    <!-- ══════ TOAST ══════ -->
     <div class="toast-el" id="toast"></div>
 
     <!-- Scripts -->

@@ -7,13 +7,13 @@
     <meta name="theme-color" content="#0a0a1a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Sliding Puzzle â€” Premium Brain Game</title>
+    <title>Sliding Puzzle — Premium Brain Game</title>
     <link rel="icon" type="image/png" href="assets/icons/game-icon.png">
     <link rel="apple-touch-icon" href="assets/icons/game-icon.png">
     <link rel="stylesheet" href="css/style.css">
 
 <!-- Google AdSense Auto Ads / H5 Ad Placement API -->
-<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2738438146721203" crossorigin="anonymous"></script>
 <script>
     window.adsbygoogle = window.adsbygoogle || [];
     var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
@@ -46,7 +46,7 @@
         <p class="menu-subtitle">Premium Brain Game</p>
         <div class="menu-buttons">
             <button class="btn btn-primary" id="btn-play">
-                â–¶ PLAY
+                ▶ PLAY
             </button>
             <button class="btn btn-secondary" id="btn-levels">
                 ðŸ“‹ SELECT LEVEL
@@ -55,7 +55,7 @@
                 ðŸ“– TUTORIAL
             </button>
             <button class="btn btn-secondary" id="btn-settings">
-                âš™ï¸ SETTINGS
+                ⚙️ SETTINGS
             </button>
         </div>
     </div>
@@ -65,7 +65,7 @@
         <h2 class="level-screen-title">SELECT LEVEL</h2>
         <div id="level-grid" class="level-grid"></div>
         <button class="btn btn-secondary" id="btn-level-back" style="margin-top: 16px;">
-            â† BACK
+            ← BACK
         </button>
     </div>
 
@@ -107,17 +107,17 @@
                 ðŸ’¡ Hint <span class="count" id="hint-count">0</span>
             </button>
             <button class="powerup-btn" id="btn-freeze" title="Freeze Timer">
-                â„ï¸ Freeze <span class="count" id="freeze-count">0</span>
+                ❄️¸ Freeze <span class="count" id="freeze-count">0</span>
             </button>
             <button class="powerup-btn" id="btn-skip" title="Skip Bonus">
-                â­ï¸ Skip <span class="count" id="skip-count">0</span>
+                ⏭️¸ Skip <span class="count" id="skip-count">0</span>
             </button>
         </div>
 
         <!-- Game Controls -->
         <div class="game-controls">
             <button class="btn btn-secondary btn-icon" id="btn-home" title="Home">ðŸ </button>
-            <button class="btn btn-secondary btn-icon" id="btn-pause" title="Pause">â¸ï¸</button>
+            <button class="btn btn-secondary btn-icon" id="btn-pause" title="Pause">⏸ï¸</button>
             <button class="btn btn-secondary btn-icon" id="btn-restart" title="Restart">ðŸ”„</button>
         </div>
     </div>
@@ -125,11 +125,11 @@
     <!-- ==================== PAUSE MODAL ==================== -->
     <div id="pause-modal" class="modal-overlay">
         <div class="modal">
-            <span class="modal-icon">â¸ï¸</span>
+            <span class="modal-icon">⏸ï¸</span>
             <h2 class="modal-title">PAUSED</h2>
             <p class="modal-subtitle">Take a breath...</p>
             <div class="modal-buttons">
-                <button class="btn btn-primary" id="btn-resume">â–¶ RESUME</button>
+                <button class="btn btn-primary" id="btn-resume">▶ RESUME</button>
                 <button class="btn btn-secondary" id="btn-pause-restart">ðŸ”„ RESTART</button>
                 <button class="btn btn-secondary" id="btn-pause-menu">ðŸ  MAIN MENU</button>
             </div>
@@ -143,9 +143,9 @@
             <h2 class="modal-title">PUZZLE SOLVED!</h2>
             <p class="modal-subtitle">Amazing work!</p>
             <div class="modal-stars">
-                <span class="modal-star">â­</span>
-                <span class="modal-star">â­</span>
-                <span class="modal-star">â­</span>
+                <span class="modal-star">⭐</span>
+                <span class="modal-star">⭐</span>
+                <span class="modal-star">⭐</span>
             </div>
             <div class="modal-stats">
                 <div class="modal-stat">
@@ -162,7 +162,7 @@
                 </div>
             </div>
             <div class="modal-buttons">
-                <button class="btn btn-gold" id="btn-next-level">NEXT LEVEL â†’</button>
+                <button class="btn btn-gold" id="btn-next-level">NEXT LEVEL →</button>
                 <button class="btn btn-secondary" id="btn-win-restart">ðŸ”„ REPLAY</button>
                 <button class="btn btn-secondary" id="btn-win-menu">ðŸ“‹ LEVELS</button>
             </div>
@@ -199,7 +199,7 @@
     <!-- ==================== SETTINGS MODAL ==================== -->
     <div id="settings-modal" class="modal-overlay">
         <div class="modal">
-            <h2 class="settings-title">âš™ï¸ SETTINGS</h2>
+            <h2 class="settings-title">⚙️ SETTINGS</h2>
             <div class="settings-content">
                 <div class="setting-row">
                     <span class="setting-label">ðŸ”Š Sound Effects</span>
@@ -211,7 +211,7 @@
                 </div>
             </div>
             <button class="btn btn-primary" id="btn-settings-close" style="margin-top: 24px; width: 100%;">
-                âœ“ DONE
+                ✓ DONE
             </button>
         </div>
     </div>
@@ -224,9 +224,9 @@
             <h3 class="tutorial-title">Welcome!</h3>
             <p class="tutorial-text">Learn how to play</p>
             <div class="tutorial-buttons">
-                <button class="btn btn-secondary btn-sm" id="tutorial-prev">â† Back</button>
+                <button class="btn btn-secondary btn-sm" id="tutorial-prev">← Back</button>
                 <button class="btn btn-secondary btn-sm" id="tutorial-skip">Skip</button>
-                <button class="btn btn-primary btn-sm" id="tutorial-next">Next â†’</button>
+                <button class="btn btn-primary btn-sm" id="tutorial-next">Next →</button>
             </div>
         </div>
     </div>

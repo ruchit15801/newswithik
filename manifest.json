@@ -1,11 +1,11 @@
 {
-  "name": "VHCTA Games",
-  "short_name": "VHCTA",
-  "description": "Play 100+ free online games on VHCTA Games. No downloads. Instant play on any device.",
+  "name": "Play News",
+  "short_name": "Play News",
+  "description": "Play 100+ free online games on Play News. No downloads. Instant play on any device.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0A0F",
-  "theme_color": "#C9A84C",
+  "background_color": "#030305",
+  "theme_color": "#FFD700",
   "orientation": "portrait",
   "icons": [
     {
@@ -22,3 +22,4 @@
     }
   ]
 }
+

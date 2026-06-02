@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="description" content="Rope Hero Swing â€” Physics-based city swinging game. Attach your rope, swing across skyscrapers, build combos and master 30 epic levels!" />
+  <meta name="description" content="Rope Hero Swing — Physics-based city swinging game. Attach your rope, swing across skyscrapers, build combos and master 30 epic levels!" />
   <meta name="theme-color" content="#00d4ff" />
   <meta property="og:title" content="Rope Hero Swing" />
   <meta property="og:description" content="Spider-Man style rope swinging action game. Real physics, 30 levels, cinematic UI." />
-  <title>Rope Hero Swing â€” City Swinging Action</title>
+  <title>Rope Hero Swing — City Swinging Action</title>
 
   <link rel="icon" type="image/png" href="icon.png" />
   <link rel="apple-touch-icon" href="icon.png" />
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="css/style.css" />
 
 <!-- Google AdSense Auto Ads / H5 Ad Placement API -->
-<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2738438146721203" crossorigin="anonymous"></script>
 <script>
     window.adsbygoogle = window.adsbygoogle || [];
     var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
@@ -43,19 +43,19 @@
 </head>
 <body>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      CANVAS (always behind screens)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <canvas id="gameCanvas"></canvas>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      SPEED LINES OVERLAY
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="speedLines"></div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     HUD â€” shown during gameplay
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════════════════════════
+     HUD — shown during gameplay
+═══════════════════════════════════ -->
 <div id="hud" class="hidden">
   <!-- Left: Score + Combo -->
   <div class="hud-left">
@@ -91,30 +91,30 @@
       </div>
     </div>
     <button class="hud-btn" id="soundBtn" title="Toggle Sound">ðŸ”Š</button>
-    <button class="hud-btn" id="pauseBtn" title="Pause [Esc]">â¸</button>
+    <button class="hud-btn" id="pauseBtn" title="Pause [Esc]">⏸</button>
   </div>
 </div>
 
 <!-- Combo Banner -->
 <div id="comboBanner"></div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      MOBILE CONTROLS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="mobileControls" class="hidden">
   <div class="swing-hint">TAP &amp; HOLD<br/>TO SWING</div>
   <button class="swing-btn" id="swingBtn">ðŸ•¸ï¸</button>
   <div class="swing-hint">RELEASE<br/>TO FLY</div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      TOAST
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="toast"></div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      START / TITLE SCREEN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="startScreen" class="screen">
   <div class="city-silhouette"></div>
 
@@ -131,7 +131,7 @@
         <div><div style="font-size:9px;color:rgba(255,255,255,0.4);">LEVELS</div><div class="value">30</div></div>
       </div>
       <div class="stat-badge">
-        <span class="icon">âš¡</span>
+        <span class="icon">⚡</span>
         <div><div style="font-size:9px;color:rgba(255,255,255,0.4);">PHYSICS</div><div class="value">REAL</div></div>
       </div>
       <div class="stat-badge">
@@ -140,15 +140,15 @@
       </div>
     </div>
 
-    <button class="btn-primary" id="startBtn">âš¡ START SWINGING</button>
+    <button class="btn-primary" id="startBtn">⚡ START SWINGING</button>
     <button class="btn-secondary" id="levelSelectBtn">ðŸ—ºï¸ LEVEL SELECT</button>
-    <button class="btn-secondary" id="howToPlayBtn" style="border-color:transparent;color:rgba(255,255,255,0.4);">â“ HOW TO PLAY</button>
+    <button class="btn-secondary" id="howToPlayBtn" style="border-color:transparent;color:rgba(255,255,255,0.4);">❓ HOW TO PLAY</button>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      TUTORIAL SCREEN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="tutorialScreen" class="screen hidden">
   <div class="tutorial-card">
     <div class="tutorial-title">ðŸ•·ï¸ HOW TO SWING</div>
@@ -166,7 +166,7 @@
         <div class="step-icon">ðŸŒ€</div>
         <div class="step-text">
           <h4>SWING WITH MOMENTUM</h4>
-          <p>You swing like a pendulum â€” speed builds as you arc downward. Time your release at the peak!</p>
+          <p>You swing like a pendulum — speed builds as you arc downward. Time your release at the peak!</p>
         </div>
       </div>
 
@@ -194,13 +194,13 @@
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      LEVEL SELECT SCREEN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="levelScreen" class="screen hidden" style="overflow-y:auto;justify-content:flex-start;padding-top:20px;">
   <div class="level-screen-inner">
     <div style="display:flex;align-items:center;gap:16px;width:100%;">
-      <button class="btn-secondary" id="levelSelectBackBtn" style="padding:10px 18px;">â† BACK</button>
+      <button class="btn-secondary" id="levelSelectBackBtn" style="padding:10px 18px;">← BACK</button>
       <div class="screen-title">SELECT LEVEL</div>
     </div>
 
@@ -218,35 +218,35 @@
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      PAUSE SCREEN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="pauseScreen" class="screen hidden">
   <div class="pause-card">
-    <div class="pause-title">â¸ PAUSED</div>
+    <div class="pause-title">⏸ PAUSED</div>
     <div style="color:rgba(255,255,255,0.4);font-size:12px;font-family:var(--font-game);letter-spacing:1px;">TAKE A BREATH, HERO</div>
 
     <div class="pause-menu">
-      <button class="pause-btn resume" id="resumeBtn">â–¶ RESUME</button>
-      <button class="pause-btn" id="pauseRestartBtn">â†º RESTART LEVEL</button>
+      <button class="pause-btn resume" id="resumeBtn">▶ RESUME</button>
+      <button class="pause-btn" id="pauseRestartBtn">↺ RESTART LEVEL</button>
       <button class="pause-btn" id="pauseLevelsBtn">ðŸ—ºï¸ LEVEL SELECT</button>
       <button class="pause-btn" id="pauseMenuBtn">ðŸ  MAIN MENU</button>
     </div>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      LEVEL COMPLETE SCREEN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="levelCompleteScreen" class="screen hidden">
   <div class="level-complete-card">
     <div class="complete-badge">ðŸ†</div>
     <div class="complete-title">LEVEL COMPLETE!</div>
 
     <div class="stars-row" id="completeStars">
-      <span class="star-big">â­</span>
-      <span class="star-big">â­</span>
-      <span class="star-big">â­</span>
+      <span class="star-big">⭐</span>
+      <span class="star-big">⭐</span>
+      <span class="star-big">⭐</span>
     </div>
 
     <div class="results-grid">
@@ -269,18 +269,18 @@
     </div>
 
     <div style="display:flex;flex-direction:column;gap:12px;width:100%;">
-      <button class="btn-primary" id="nextLevelBtn" style="background:linear-gradient(135deg,#00ff88,#00cc66);color:#000;">NEXT LEVEL â†’</button>
+      <button class="btn-primary" id="nextLevelBtn" style="background:linear-gradient(135deg,#00ff88,#00cc66);color:#000;">NEXT LEVEL →</button>
       <div style="display:flex;gap:12px;">
-        <button class="btn-secondary" id="replayBtn" style="flex:1;">â†º REPLAY</button>
+        <button class="btn-secondary" id="replayBtn" style="flex:1;">↺ REPLAY</button>
         <button class="btn-secondary" id="lvlCompLevelsBtn" style="flex:1;">ðŸ—ºï¸ LEVELS</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ═══════════════════════════════════
      GAME OVER SCREEN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+═══════════════════════════════════ -->
 <div id="gameOverScreen" class="screen hidden">
   <div class="game-over-card">
     <div style="font-size:56px;animation:popIn 0.5s ease both;">ðŸ’€</div>
@@ -303,7 +303,7 @@
     </div>
 
     <div style="display:flex;flex-direction:column;gap:12px;width:100%;">
-      <button class="btn-primary" id="goRetryBtn" style="background:linear-gradient(135deg,#ff6b35,#cc3300);">â†º TRY AGAIN</button>
+      <button class="btn-primary" id="goRetryBtn" style="background:linear-gradient(135deg,#ff6b35,#cc3300);">↺ TRY AGAIN</button>
       <button class="btn-secondary" id="goLevelsBtn">ðŸ—ºï¸ LEVEL SELECT</button>
     </div>
   </div>

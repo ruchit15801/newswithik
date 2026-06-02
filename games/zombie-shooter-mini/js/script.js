@@ -217,7 +217,7 @@ class Particle {
 let splats = []; // Persistent blood on ground
 
 function drawBackground() {
-    ctx.fillStyle = '#0a0a0f';
+    ctx.fillStyle = '#030305';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // Grid

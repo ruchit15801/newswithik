@@ -1,5 +1,5 @@
-/* ─── VHCTA Games — Performance Service Worker v9 ─── */
-const CACHE_NAME    = 'vhcta-v9';
+/* ─── Play News — Performance Service Worker v9 ─── */
+const CACHE_NAME    = 'playnews-v9';
 const FONT_CACHE    = 'vhcta-fonts-v9';
 const IMG_CACHE     = 'vhcta-images-v9';
 
@@ -123,3 +123,4 @@ async function networkFirst(request, cacheName) {
         throw e;
     }
 }
+

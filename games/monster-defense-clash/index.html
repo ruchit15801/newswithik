@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description"
-    content="Monster Defense Clash â€” Ultra Premium Tower Defense Game. Place defenders, fight waves of monsters, unlock abilities and progress through 30 epic levels!" />
+    content="Monster Defense Clash — Ultra Premium Tower Defense Game. Place defenders, fight waves of monsters, unlock abilities and progress through 30 epic levels!" />
   <meta name="theme-color" content="#0a0a1a" />
   <!-- Favicon / Icons -->
   <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg" />
@@ -17,8 +17,8 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:description"
-    content="Epic tower defense game inspired by Plants vs Zombies â€” 30 levels, 6 units, boss monsters, abilities and more!" />
-  <title>Monster Defense Clash â€” Premium Tower Defense</title>
+    content="Epic tower defense game inspired by Plants vs Zombies — 30 levels, 6 units, boss monsters, abilities and more!" />
+  <title>Monster Defense Clash — Premium Tower Defense</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
     /* Inline keyframe for energy flash */
@@ -38,7 +38,7 @@
   </style>
 
 <!-- Google AdSense Auto Ads / H5 Ad Placement API -->
-<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2738438146721203" crossorigin="anonymous"></script>
 <script>
     window.adsbygoogle = window.adsbygoogle || [];
     var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
@@ -47,22 +47,22 @@
 
 <body>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      LOADING SCREEN
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="loading-screen">
     <img src="assets/icons/icon.svg" alt="Monster Defense Clash Icon" class="menu-icon-float"
       style="width:96px;height:96px;border-radius:20px;" />
-    <div class="loading-logo">âš”ï¸ MONSTER DEFENSE CLASH</div>
+    <div class="loading-logo">⚔️¸ MONSTER DEFENSE CLASH</div>
     <div class="loading-bar-wrapper">
       <div class="loading-bar-fill" style="width:0%"></div>
     </div>
     <div class="loading-text">Loading assets...</div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      MAIN MENU
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="main-menu" class="screen">
     <!-- Thumbnail as background banner -->
     <div class="menu-thumbnail">
@@ -78,13 +78,13 @@
             style="width:100px;height:100px;border-radius:22px;box-shadow:0 0 40px rgba(168,85,247,0.8),0 0 80px rgba(168,85,247,0.4);display:block;" />
         </div>
         <h1 class="logo-title">Monster<br>Defense Clash</h1>
-        <p class="logo-subtitle">âš”ï¸ Tower Defense War âš”ï¸</p>
+        <p class="logo-subtitle">⚔️¸ Tower Defense War ⚔️¸</p>
       </div>
 
       <!-- Menu Buttons -->
       <div class="menu-buttons">
         <button id="btn-play" class="btn-menu btn-primary">
-          âš”ï¸ &nbsp; PLAY NOW
+          ⚔️¸ &nbsp; PLAY NOW
         </button>
         <button id="btn-how-to-play" class="btn-menu btn-secondary"
           onclick="document.getElementById('tutorial-screen').classList.remove('hidden');document.getElementById('main-menu').classList.add('hidden');">
@@ -110,18 +110,18 @@
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      TUTORIAL SCREEN
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="tutorial-screen" class="screen hidden">
     <div class="tutorial-container">
-      <h2 class="tutorial-title">âš”ï¸ How to Play</h2>
+      <h2 class="tutorial-title">⚔️¸ How to Play</h2>
 
       <div class="tutorial-steps">
         <div class="tutorial-step" style="animation-delay:0.05s">
           <span class="step-icon">ðŸŽ¯</span>
           <span class="step-title">Select a Unit</span>
-          <p class="step-desc">Tap a defender card from the bottom panel. Each unit has a cost shown in âš¡ Energy.</p>
+          <p class="step-desc">Tap a defender card from the bottom panel. Each unit has a cost shown in ⚡ Energy.</p>
         </div>
         <div class="tutorial-step" style="animation-delay:0.1s">
           <span class="step-icon">ðŸ—ºï¸</span>
@@ -135,18 +135,18 @@
           </p>
         </div>
         <div class="tutorial-step" style="animation-delay:0.2s">
-          <span class="step-icon">âš¡</span>
+          <span class="step-icon">⚡</span>
           <span class="step-title">Energy System</span>
           <p class="step-desc">Energy regenerates over time. Killing enemies gives bonus energy. Spend wisely!</p>
         </div>
         <div class="tutorial-step" style="animation-delay:0.25s">
           <span class="step-icon">ðŸ’¥</span>
           <span class="step-title">Use Abilities</span>
-          <p class="step-desc">Bomb ðŸ’¥, Freeze â„ï¸ and Fire ðŸ”¥ buttons deal massive damage to all enemies. Use when
+          <p class="step-desc">Bomb ðŸ’¥, Freeze ❄️¸ and Fire ðŸ”¥ buttons deal massive damage to all enemies. Use when
             overwhelmed!</p>
         </div>
         <div class="tutorial-step" style="animation-delay:0.3s">
-          <span class="step-icon">â¬†ï¸</span>
+          <span class="step-icon">⬆ï¸</span>
           <span class="step-title">Upgrade Towers</span>
           <p class="step-desc">Tap any placed defender to upgrade damage, speed or range. Sell for 60% energy back.</p>
         </div>
@@ -166,7 +166,7 @@
 
       <div class="tutorial-actions">
         <button id="btn-start-game" class="btn-menu btn-primary" style="padding:14px 40px;font-size:0.95rem;">
-          âš”ï¸ &nbsp; CHOOSE LEVEL
+          ⚔️¸ &nbsp; CHOOSE LEVEL
         </button>
         <button id="btn-skip-tutorial" class="btn-menu btn-secondary" style="padding:14px 30px;font-size:0.85rem;">
           SKIP
@@ -175,9 +175,9 @@
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      LEVEL SELECT SCREEN
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="level-select" class="screen hidden">
     <div class="level-select-container">
       <div class="level-select-header">
@@ -187,25 +187,25 @@
       <div class="levels-grid" id="levels-grid">
         <!-- dynamically built -->
       </div>
-      <button id="btn-back-levels" class="back-btn">â† Back to Menu</button>
+      <button id="btn-back-levels" class="back-btn">← Back to Menu</button>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      GAME CANVAS CONTAINER
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="game-canvas-container">
     <canvas id="game-canvas"></canvas>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      GAME HUD (top bar)
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="game-hud" style="display:none;">
     <div class="hud-top">
       <!-- Energy -->
       <div class="hud-resource" id="hud-energy-container">
-        <span class="res-icon">âš¡</span>
+        <span class="res-icon">⚡</span>
         <span class="res-value" id="hud-energy">150</span>
       </div>
 
@@ -234,14 +234,14 @@
       <!-- Buttons -->
       <div class="hud-buttons">
         <button class="hud-btn" id="btn-sound" title="Toggle Sound">ðŸ”Š</button>
-        <button class="hud-btn" id="btn-pause" title="Pause (ESC)">â¸ï¸</button>
+        <button class="hud-btn" id="btn-pause" title="Pause (ESC)">⏸ï¸</button>
       </div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      UNIT SELECTION PANEL (bottom)
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="unit-panel" class="hidden">
     <div class="unit-panel-label">UNITS</div>
     <div class="units-row" id="units-row">
@@ -255,7 +255,7 @@
       </button>
       <button class="ability-btn" id="ability-freeze" title="Mass Freeze">
         <div class="cooldown-ring"></div>
-        <span class="ability-icon">â„ï¸</span>
+        <span class="ability-icon">❄️¸</span>
         <span class="ability-label">FREEZE</span>
       </button>
       <button class="ability-btn" id="ability-fire" title="Fire Sweep">
@@ -266,47 +266,47 @@
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      UPGRADE PANEL (contextual popup)
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="upgrade-panel">
     <!-- dynamically populated -->
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      WAVE ALERT BANNER
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="wave-alert" aria-live="assertive">
-    <div class="wave-alert-label">âš ï¸ INCOMING</div>
+    <div class="wave-alert-label">⚠️ INCOMING</div>
     <div class="wave-alert-num" id="wave-alert-num">WAVE 1!</div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      PAUSE SCREEN
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="pause-screen">
     <div class="pause-box">
-      <div class="pause-title">â¸ PAUSED</div>
+      <div class="pause-title">⏸ PAUSED</div>
       <p style="color:#64748b;font-size:0.85rem;">Take a breath, commander.</p>
       <div class="pause-actions">
-        <button id="btn-resume" class="btn-menu btn-primary" style="padding:14px;font-size:0.9rem;">â–¶ RESUME</button>
-        <button id="btn-restart" class="btn-menu btn-secondary" style="padding:14px;font-size:0.9rem;">â†º
+        <button id="btn-resume" class="btn-menu btn-primary" style="padding:14px;font-size:0.9rem;">▶ RESUME</button>
+        <button id="btn-restart" class="btn-menu btn-secondary" style="padding:14px;font-size:0.9rem;">↺
           RESTART</button>
         <button id="btn-quit" class="btn-menu btn-secondary"
-          style="padding:14px;font-size:0.9rem;color:#ef4444;border-color:rgba(239,68,68,0.3);">âœ• QUIT</button>
+          style="padding:14px;font-size:0.9rem;color:#ef4444;border-color:rgba(239,68,68,0.3);">✕ QUIT</button>
       </div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      VICTORY SCREEN
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="victory-screen" class="result-screen">
     <div class="result-box victory-box">
       <span class="result-emoji">ðŸ†</span>
       <h2 class="result-title">VICTORY!</h2>
       <p class="result-subtitle">Your kingdom stands strong, Commander!</p>
-      <span class="result-stars" id="vs-stars">â­â­â­</span>
+      <span class="result-stars" id="vs-stars">⭐⭐⭐</span>
       <div class="result-stats">
         <div class="result-stat">
           <div class="rs-val" id="vs-score">0</div>
@@ -327,16 +327,16 @@
       </div>
       <p id="vs-unlock" style="color:#a855f7;font-weight:700;font-size:0.9rem;margin-bottom:16px;"></p>
       <div class="result-actions">
-        <button id="btn-victory-next" class="btn-result primary">NEXT LEVEL â†’</button>
-        <button id="btn-victory-retry" class="btn-result secondary">â†º RETRY</button>
+        <button id="btn-victory-next" class="btn-result primary">NEXT LEVEL →</button>
+        <button id="btn-victory-retry" class="btn-result secondary">↺ RETRY</button>
         <button id="btn-victory-menu" class="btn-result secondary">ðŸ  MENU</button>
       </div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      DEFEAT SCREEN
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="defeat-screen" class="result-screen">
     <div class="result-box defeat-box">
       <span class="result-emoji">ðŸ’€</span>
@@ -361,15 +361,15 @@
         </div>
       </div>
       <div class="result-actions">
-        <button id="btn-defeat-retry" class="btn-result primary">â†º TRY AGAIN</button>
+        <button id="btn-defeat-retry" class="btn-result primary">↺ TRY AGAIN</button>
         <button id="btn-defeat-menu" class="btn-result secondary">ðŸ  MENU</button>
       </div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ═══════════════════════════════════════════
      EFFECTS OVERLAY
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+     ═══════════════════════════════════════════ -->
   <div id="effects-overlay"></div>
 
   <!-- Script -->

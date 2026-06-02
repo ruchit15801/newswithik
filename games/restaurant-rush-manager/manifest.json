@@ -3,7 +3,7 @@
   "short_name": "RestRush",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#12121A",
+  "background_color": "#0A0A0E",
   "theme_color": "#FF3366",
   "description": "Premium Time-Management Restaurant Simulator",
   "orientation": "landscape",

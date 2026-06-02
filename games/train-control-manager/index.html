@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Train Control Manager â€” Premium Rail Simulation</title>
+  <title>Train Control Manager — Premium Rail Simulation</title>
   <meta name="description"
     content="Train Control Manager: Premium HTML5 rail simulation game. Control signals, manage multiple trains, prevent collisions and master 20 challenging levels.">
   <meta name="theme-color" content="#050c1a">
 
   <!-- Branding / OG -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Train Control Manager â€” Premium Rail Simulation">
+  <meta property="og:title" content="Train Control Manager — Premium Rail Simulation">
   <meta property="og:description"
     content="Master the rails in this high-fidelity simulation. Manage signals and stations at a grand scale.">
   <meta property="og:image" content="assets/icons/thumbnail.svg">
@@ -29,7 +29,7 @@
 
   <!-- Google AdSense Auto Ads / H5 Ad Placement API -->
   <script async data-ad-frequency-hint="30s"
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330"
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2738438146721203"
     crossorigin="anonymous"></script>
   <script>
     window.adsbygoogle = window.adsbygoogle || [];
@@ -39,9 +39,9 @@
 
 <body>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   BACKGROUND DECORATIONS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div class="background-grid"></div>
   <div class="bg-orbs">
     <div class="bg-orb"></div>
@@ -49,19 +49,19 @@
     <div class="bg-orb"></div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   COLLISION FLASH OVERLAY
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="collision-flash"></div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   FLOATING NOTIFICATIONS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="notifications"></div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   SCREEN: INTRO / LOADING
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="screen-intro" class="screen active">
     <div class="intro-logo">
       <!-- SVG game logo icon -->
@@ -81,9 +81,9 @@
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   SCREEN: MAIN MENU
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="screen-menu" class="screen">
     <!-- Decorative background canvas (separate from game canvas) -->
     <canvas id="menuCanvas"
@@ -129,9 +129,9 @@
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   SCREEN: TUTORIAL
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="screen-tutorial" class="screen">
     <div class="tutorial-box">
       <div class="tutorial-header">
@@ -210,10 +210,10 @@
         <!-- Slide 3: Levels -->
         <div class="tutorial-slide">
           <div class="tutorial-card">
-            <div class="tutorial-icon cyan">â­</div>
+            <div class="tutorial-icon cyan">⭐</div>
             <div class="tutorial-card-content">
               <h4>20 LEVELS</h4>
-              <p>Progress through 5 zones: Green Valley â†’ Iron Ridge â†’ Steel Canyon â†’ Neon Heights â†’ Quantum Rail. Each
+              <p>Progress through 5 zones: Green Valley → Iron Ridge → Steel Canyon → Neon Heights → Quantum Rail. Each
                 zone adds more trains, faster speeds, and complex junctions.</p>
             </div>
           </div>
@@ -231,28 +231,28 @@
 
       <div class="tutorial-footer">
         <button id="btn-tut-skip" class="btn-tut btn-tut-skip">SKIP</button>
-        <button id="btn-tut-next" class="btn-tut btn-tut-next">NEXT â†’</button>
+        <button id="btn-tut-next" class="btn-tut btn-tut-next">NEXT →</button>
         <button id="btn-tut-start" class="btn-tut btn-tut-start" style="display:none">ðŸš‚ LET'S GO!</button>
       </div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   SCREEN: LEVEL SELECT
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="screen-levels" class="screen">
     <div class="levels-container">
       <div class="levels-header">
-        <button id="btn-levels-back" class="btn-back">â†</button>
+        <button id="btn-levels-back" class="btn-back">←</button>
         <h2 class="levels-title">SELECT LEVEL</h2>
       </div>
       <div id="level-zones"></div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   SCREEN: GAME
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="screen-game" class="screen" style="flex-direction:column;align-items:stretch;">
 
     <!-- TOP HUD -->
@@ -300,7 +300,7 @@
 
       <!-- Control buttons -->
       <button class="btn-hud" id="btn-sound" title="Toggle Sound">ðŸ”Š</button>
-      <button class="btn-hud" id="btn-pause" title="Pause (Esc)">â¸</button>
+      <button class="btn-hud" id="btn-pause" title="Pause (Esc)">⏸</button>
     </div>
 
     <!-- GAME CANVAS AREA -->
@@ -314,7 +314,7 @@
       <!-- Tabs -->
       <div class="control-panel-tabs">
         <button class="ctrl-tab active" data-panel="signals">ðŸš¦ Signals</button>
-        <button class="ctrl-tab" data-panel="speed">âš¡ Speed</button>
+        <button class="ctrl-tab" data-panel="speed">⚡ Speed</button>
         <button class="ctrl-tab" data-panel="trains">ðŸš‚ Trains</button>
       </div>
 
@@ -370,23 +370,23 @@
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   OVERLAY: PAUSE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="overlay-pause">
     <div class="pause-box">
       <div class="pause-title">PAUSED</div>
       <div class="pause-subtitle">Game suspended</div>
       <div class="pause-buttons">
-        <button id="btn-resume" class="btn-pause btn-pause-resume">â–¶ RESUME</button>
-        <button id="btn-pause-menu" class="btn-pause btn-pause-menu">â† MAIN MENU</button>
+        <button id="btn-resume" class="btn-pause btn-pause-resume">▶ RESUME</button>
+        <button id="btn-pause-menu" class="btn-pause btn-pause-menu">← MAIN MENU</button>
       </div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   SCREEN: GAME OVER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="screen-gameover" class="screen">
     <div class="result-box">
       <div class="result-icon">ðŸ’¥</div>
@@ -410,14 +410,14 @@
 
       <div class="result-buttons">
         <button id="btn-retry" class="btn-result btn-result-retry">ðŸ”„ RETRY</button>
-        <button id="btn-go-menu" class="btn-result btn-result-menu">â† MENU</button>
+        <button id="btn-go-menu" class="btn-result btn-result-menu">← MENU</button>
       </div>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ══════════════════════════════════════════════════════
   SCREEN: LEVEL COMPLETE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+══════════════════════════════════════════════════════ -->
   <div id="screen-levelcomplete" class="screen">
     <div class="result-box">
       <div class="result-icon">ðŸ†</div>
@@ -425,9 +425,9 @@
       <p class="result-message">Network operated flawlessly</p>
 
       <div class="result-stars" id="lc-stars">
-        <span class="result-star">â­</span>
-        <span class="result-star">â­</span>
-        <span class="result-star">â­</span>
+        <span class="result-star">⭐</span>
+        <span class="result-star">⭐</span>
+        <span class="result-star">⭐</span>
       </div>
 
       <div class="result-stats">
@@ -447,8 +447,8 @@
 
       <div class="result-buttons">
         <button id="btn-lc-retry" class="btn-result btn-result-retry">ðŸ”„ RETRY</button>
-        <button id="btn-next-level" class="btn-result btn-result-next">NEXT LEVEL â†’</button>
-        <button id="btn-lc-menu" class="btn-result btn-result-menu">â† MENU</button>
+        <button id="btn-next-level" class="btn-result btn-result-next">NEXT LEVEL →</button>
+        <button id="btn-lc-menu" class="btn-result btn-result-menu">← MENU</button>
       </div>
     </div>
   </div>

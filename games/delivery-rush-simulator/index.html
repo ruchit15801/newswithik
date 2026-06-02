@@ -7,10 +7,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#060B14">
-  <title>Delivery Rush Simulator â€“ Crazy Taxi Arcade</title>
-  <meta name="description" content="Delivery Rush Simulator â€“ a fast-paced Crazy Taxi-inspired arcade driving game. Pick up packages, race through the city, deliver before time runs out!">
+  <title>Delivery Rush Simulator "“ Crazy Taxi Arcade</title>
+  <meta name="description" content="Delivery Rush Simulator "“ a fast-paced Crazy Taxi-inspired arcade driving game. Pick up packages, race through the city, deliver before time runs out!">
   <meta property="og:title" content="Delivery Rush Simulator">
-  <meta property="og:description" content="Fast-paced arcade driving game â€” deliver packages before time runs out!">
+  <meta property="og:description" content="Fast-paced arcade driving game — deliver packages before time runs out!">
   <meta property="og:type" content="website">
   <meta property="og:image" id="ogImage" content="assets/images/thumb.png">
   <link rel="icon" id="favicon" type="image/png" href="assets/icons/icon.png">
@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Google AdSense Auto Ads / H5 Ad Placement API -->
-<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408433736996330" crossorigin="anonymous"></script>
+<script async data-ad-frequency-hint="30s" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2738438146721203" crossorigin="anonymous"></script>
 <script>
     window.adsbygoogle = window.adsbygoogle || [];
     var adBreak = adConfig = function(o) {adsbygoogle.push(o);}
@@ -28,10 +28,10 @@
 </head>
 <body>
 
-<!-- â•â•â•â•â•â•â•â• GAME CANVAS â•â•â•â•â•â•â•â• -->
+<!-- ════════ GAME CANVAS ════════ -->
 <canvas id="gameCanvas"></canvas>
 
-<!-- â•â•â•â•â•â•â•â• LOADING SCREEN â•â•â•â•â•â•â•â• -->
+<!-- ════════ LOADING SCREEN ════════ -->
 <div id="screen-loading" class="screen active">
   <div class="load-logo">
     <div class="load-van">ðŸšš</div>
@@ -41,10 +41,10 @@
   <div class="load-bar-wrap">
     <div class="load-bar" id="loadBar"></div>
   </div>
-  <p class="load-text" id="loadText">Initialising Cityâ€¦</p>
+  <p class="load-text" id="loadText">Initialising City"¦</p>
 </div>
 
-<!-- â•â•â•â•â•â•â•â• MAIN MENU â•â•â•â•â•â•â•â• -->
+<!-- ════════ MAIN MENU ════════ -->
 <div id="screen-menu" class="screen">
   <div class="menu-scanlines"></div>
   <div class="menu-glow-bg"></div>
@@ -57,14 +57,14 @@
       <div class="menu-van-icon">ðŸšš</div>
       <h1 class="menu-title">DELIVERY<br><span class="gold">RUSH</span></h1>
       <p class="menu-subtitle">S I M U L A T O R</p>
-      <p class="menu-tagline">â— CRAZY FAST &nbsp;â—&nbsp; CRAZY FUN â—</p>
+      <p class="menu-tagline">● CRAZY FAST &nbsp;●&nbsp; CRAZY FUN ●</p>
     </div>
     <div class="menu-btns">
       <button class="btn btn-start" id="btnPlay">
-        <span class="btn-ico">â–¶</span> START GAME
+        <span class="btn-ico">▶</span> START GAME
       </button>
       <button class="btn btn-sec" id="btnUpgrades" onclick="G.showUpgrades()">
-        <span class="btn-ico">âš¡</span> UPGRADES
+        <span class="btn-ico">⚡</span> UPGRADES
       </button>
       <button class="btn btn-sec" id="btnHow" onclick="G.showTutorial()">
         <span class="btn-ico">ðŸ“–</span> HOW TO PLAY
@@ -83,32 +83,32 @@
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â• TUTORIAL SCREEN â•â•â•â•â•â•â•â• -->
+<!-- ════════ TUTORIAL SCREEN ════════ -->
 <div id="screen-tutorial" class="screen">
   <div class="tut-box">
     <h2 class="tut-title">ðŸ“– HOW TO PLAY</h2>
     <div class="tut-slides" id="tutSlides"><!-- Injected by JS --></div>
     <div class="tut-nav">
-      <button class="btn btn-sm" id="tutPrev" onclick="G.tutPrev()">â—€ PREV</button>
+      <button class="btn btn-sm" id="tutPrev" onclick="G.tutPrev()">◀ PREV</button>
       <div class="tut-dots" id="tutDots"></div>
-      <button class="btn btn-sm" id="tutNext" onclick="G.tutNext()">NEXT â–¶</button>
+      <button class="btn btn-sm" id="tutNext" onclick="G.tutNext()">NEXT ▶</button>
     </div>
     <button class="btn btn-start" style="margin-top:16px" onclick="G.startLevel(G.currentLevel||1)">ðŸš€ LET'S GO!</button>
-    <button class="btn btn-skip" onclick="G.startLevel(G.currentLevel||1)">SKIP â†’</button>
+    <button class="btn btn-skip" onclick="G.startLevel(G.currentLevel||1)">SKIP →</button>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â• UPGRADE SCREEN â•â•â•â•â•â•â•â• -->
+<!-- ════════ UPGRADE SCREEN ════════ -->
 <div id="screen-upgrades" class="screen">
   <div class="upg-box">
-    <h2 class="upg-title">âš¡ GARAGE UPGRADES</h2>
+    <h2 class="upg-title">⚡ GARAGE UPGRADES</h2>
     <div class="upg-coins-row">ðŸª™ COINS: <span id="upgCoins">0</span></div>
     <div class="upg-grid">
       <div class="upg-card" id="cardSpeed">
         <div class="upg-icon">ðŸŽï¸</div>
         <div class="upg-name">ENGINE</div>
         <div class="upg-desc">+20% Top Speed</div>
-        <div class="upg-stars" id="starsSpeed">â˜†â˜†â˜†â˜†â˜†</div>
+        <div class="upg-stars" id="starsSpeed">☆☆☆☆☆</div>
         <button class="btn btn-upg" id="btnUpgSpeed" onclick="G.upgrade('speed')">
           <span id="costSpeed">ðŸª™ 200</span>
         </button>
@@ -117,26 +117,26 @@
         <div class="upg-icon">ðŸŽ¯</div>
         <div class="upg-name">HANDLING</div>
         <div class="upg-desc">+15% Steering</div>
-        <div class="upg-stars" id="starsHandling">â˜†â˜†â˜†â˜†â˜†</div>
+        <div class="upg-stars" id="starsHandling">☆☆☆☆☆</div>
         <button class="btn btn-upg" id="btnUpgHandling" onclick="G.upgrade('handling')">
           <span id="costHandling">ðŸª™ 150</span>
         </button>
       </div>
       <div class="upg-card" id="cardNitro">
-        <div class="upg-icon">âš¡</div>
+        <div class="upg-icon">⚡</div>
         <div class="upg-name">NITRO</div>
         <div class="upg-desc">+25% Boost Power</div>
-        <div class="upg-stars" id="starsNitro">â˜†â˜†â˜†â˜†â˜†</div>
+        <div class="upg-stars" id="starsNitro">☆☆☆☆☆</div>
         <button class="btn btn-upg" id="btnUpgNitro" onclick="G.upgrade('nitro')">
           <span id="costNitro">ðŸª™ 180</span>
         </button>
       </div>
     </div>
-    <button class="btn btn-sec" style="margin-top:20px" onclick="G.showMenu()">â† BACK TO MENU</button>
+    <button class="btn btn-sec" style="margin-top:20px" onclick="G.showMenu()">← BACK TO MENU</button>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â• GAME HUD â•â•â•â•â•â•â•â• -->
+<!-- ════════ GAME HUD ════════ -->
 <div id="game-hud" class="hud hidden">
 
   <!-- Top-left: Score + Level -->
@@ -171,7 +171,7 @@
 
   <!-- Bottom-center: Nitro bar -->
   <div class="hud-nitro-wrap" id="hudNitro">
-    <div class="hud-nitro-lbl">âš¡ NITRO</div>
+    <div class="hud-nitro-lbl">⚡ NITRO</div>
     <div class="hud-nitro-track">
       <div class="hud-nitro-fill" id="hNitroFill"></div>
     </div>
@@ -189,15 +189,15 @@
   <!-- Direction arrow -->
   <div class="hud-arrow-wrap" id="hudArrow">
     <div class="hud-arrow-ring">
-      <div class="hud-arrow-ptr" id="hArrowPtr">â–²</div>
+      <div class="hud-arrow-ptr" id="hArrowPtr">▲</div>
     </div>
     <div class="hud-arrow-label" id="hArrowLabel">TARGET</div>
   </div>
 
   <!-- Pause button -->
-  <button class="btn-pause" id="btnPause" onclick="G.pause()">â¸</button>
+  <button class="btn-pause" id="btnPause" onclick="G.pause()">⏸</button>
 
-  <!-- Mobile controls â€” shown only on touch devices -->
+  <!-- Mobile controls — shown only on touch devices -->
   <div class="m-ctrl hidden" id="mobileCtrl">
     <!-- Left: Joystick -->
     <div class="m-joystick-area" id="joyArea">
@@ -206,7 +206,7 @@
     </div>
     <!-- Right: Action buttons -->
     <div class="m-btns">
-      <button class="m-btn m-nitro" id="mNitro">âš¡<br><span>NITRO</span></button>
+      <button class="m-btn m-nitro" id="mNitro">⚡<br><span>NITRO</span></button>
       <button class="m-btn m-brake" id="mBrake">ðŸ…±<br><span>BRAKE</span></button>
       <button class="m-btn m-horn" id="mHorn" ontouchstart="G.audio&&G.audio.horn()">ðŸ“¯<br><span>HORN</span></button>
     </div>
@@ -214,35 +214,35 @@
 
 </div><!-- /game-hud -->
 
-<!-- â•â•â•â•â•â•â•â• PAUSE SCREEN â•â•â•â•â•â•â•â• -->
+<!-- ════════ PAUSE SCREEN ════════ -->
 <div id="screen-pause" class="screen">
   <div class="overlay-box">
-    <h2 class="overlay-title">â¸ PAUSED</h2>
-    <button class="btn btn-start" onclick="G.resume()">â–¶ RESUME</button>
+    <h2 class="overlay-title">⏸ PAUSED</h2>
+    <button class="btn btn-start" onclick="G.resume()">▶ RESUME</button>
     <button class="btn btn-sec" onclick="G.restartLevel()">ðŸ”„ RESTART</button>
     <button class="btn btn-sec" onclick="G.showMenu()">ðŸ  MAIN MENU</button>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â• LEVEL COMPLETE â•â•â•â•â•â•â•â• -->
+<!-- ════════ LEVEL COMPLETE ════════ -->
 <div id="screen-complete" class="screen">
   <div class="overlay-box complete-box">
     <div class="cmpl-banner">ðŸŽ‰ LEVEL COMPLETE!</div>
-    <div class="cmpl-lvl" id="cmplLvl">LEVEL 1 â€” FIRST DELIVERY</div>
-    <div class="cmpl-stars" id="cmplStars">â­â­â­</div>
+    <div class="cmpl-lvl" id="cmplLvl">LEVEL 1 — FIRST DELIVERY</div>
+    <div class="cmpl-stars" id="cmplStars">⭐⭐⭐</div>
     <div class="cmpl-stats">
       <div class="cs-row"><span>ðŸ“¦ Deliveries</span><span id="csDeliveries">0/0</span></div>
-      <div class="cs-row"><span>â± Time Bonus</span><span id="csTimeBonus" class="gold">+0</span></div>
-      <div class="cs-row"><span>âš¡ Combo</span><span id="csCombo">Ã—1</span></div>
+      <div class="cs-row"><span>⏱ Time Bonus</span><span id="csTimeBonus" class="gold">+0</span></div>
+      <div class="cs-row"><span>⚡ Combo</span><span id="csCombo">Ã—1</span></div>
       <div class="cs-row cs-total"><span>ðŸ’Ž SCORE</span><span id="csScore" class="gold">0</span></div>
       <div class="cs-row"><span>ðŸª™ Coins Earned</span><span id="csCoins" class="gold">+0</span></div>
     </div>
-    <button class="btn btn-start" id="btnNext" onclick="G.nextLevel()">NEXT LEVEL â–¶</button>
+    <button class="btn btn-start" id="btnNext" onclick="G.nextLevel()">NEXT LEVEL ▶</button>
     <button class="btn btn-sec" onclick="G.restartLevel()">ðŸ”„ RETRY</button>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â• GAME OVER â•â•â•â•â•â•â•â• -->
+<!-- ════════ GAME OVER ════════ -->
 <div id="screen-gameover" class="screen">
   <div class="overlay-box go-box">
     <div class="go-title">ðŸ’€ GAME OVER</div>
