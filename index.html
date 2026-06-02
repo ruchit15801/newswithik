@@ -268,7 +268,7 @@
             function esc(s) {
                 return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
             }
-            window.__Play News_showGamesLoadError = function (title, detail) {
+            window.__PlayNews_showGamesLoadError = function (title, detail) {
                 console.error('[Play News]', title, detail || '');
                 var el = document.getElementById('game-grid');
                 if (!el) return;
@@ -281,14 +281,14 @@
                 var f = ev.filename || (ev.target && ev.target.src) || '';
                 if (String(f).indexOf('games.js') === -1) return;
                 if (ev.error == null && ev.message === 'Script error.') return;
-                window.__Play News_showGamesLoadError(
+                window.__PlayNews_showGamesLoadError(
                     'Error inside games.js (syntax or runtime)',
                     (ev.message || 'unknown') + (ev.lineno ? ' — line ' + ev.lineno : '')
                 );
             }, true);
         })();
     </script>
-    <script src="js/games.js?v=9" onerror="window.__Play News_showGamesLoadError('games.js did not load (404, blocked, or wrong folder).','Serve this folder with a local server, e.g. npx serve . then open http://127.0.0.1:3000')"></script>
+    <script src="js/games.js?v=9" onerror="window.__PlayNews_showGamesLoadError('games.js did not load (404, blocked, or wrong folder).','Serve this folder with a local server, e.g. npx serve . then open http://127.0.0.1:3000')"></script>
     <script src="js/main.js?v=10"></script>
     <script>
         // Unregister any stuck service workers that are breaking the local experience

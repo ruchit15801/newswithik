@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!window.GAMES || !Array.isArray(window.GAMES) || window.GAMES.length === 0) {
             var hint = 'Expected script: js/games.js (same folder as index.html). Protocol: ' + location.protocol + ' — use http://127.0.0.1 with npx serve . if unsure.';
             console.error('[VHCTA Games] window.GAMES missing or empty.', hint);
-            if (typeof window.__VHCTA_showGamesLoadError === 'function') {
-                window.__VHCTA_showGamesLoadError('Games list not available (GAMES missing).', hint);
+            if (typeof window.__PlayNews_showGamesLoadError === 'function') {
+                window.__PlayNews_showGamesLoadError('Games list not available (GAMES missing).', hint);
             } else {
                 gameGrid.innerHTML = '<div class="loader">Games list failed to load. If you opened this file directly from disk, use a local server instead (for example: <code>npx serve .</code>) or refresh the page.</div>';
             }
