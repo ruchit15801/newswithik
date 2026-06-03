@@ -106,11 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     detailsContent.innerHTML = `
         <!-- AD 3: Top of Details Card -->
-        <div class="ad-container" style="margin: 0 auto 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent;">
+        <div class="ad-container" style="margin: 0 auto 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent; min-height:120px; contain:layout style;">
             <div class="ad-label">ADVERTISEMENT</div>
             <!-- 101Di3 -->
             <ins class="adsbygoogle"
-                 style="display:block"
+                 style="display:block;min-height:100px;"
                  data-ad-client="ca-pub-2738438146721203"
                  data-ad-slot="5733461990"
                  data-ad-format="auto"
@@ -136,11 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <!-- AD 3: Middle of Details Card -->
-        <div class="ad-container" style="margin: 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent;">
+        <div class="ad-container" style="margin: 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent; min-height:120px; contain:layout style;">
             <div class="ad-label">ADVERTISEMENT</div>
             <!-- 101Di3 -->
             <ins class="adsbygoogle"
-                 style="display:block"
+                 style="display:block;min-height:100px;"
                  data-ad-client="ca-pub-2738438146721203"
                  data-ad-slot="5733461990"
                  data-ad-format="auto"
@@ -160,11 +160,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
     
-    // Initialize injected ads
-    setTimeout(() => {
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-    }, 100);
+    // Initialize injected ads — use requestAnimationFrame for reliable DOM readiness
+    requestAnimationFrame(() => {
+        const adSlots = detailsContent.querySelectorAll('ins.adsbygoogle');
+        adSlots.forEach(slot => {
+            if (!slot.dataset.adsbygoogleStatus) {
+                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+            }
+        });
+    });
     
     // Update Page Title & SEO Meta Tags
     const fullTitle = `Play ${game.title} Online - Free Games | VHCTA Games`;

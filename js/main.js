@@ -108,11 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Insert AD 2 after the first game ONLY on the first page when showing all games
             if (i === 0 && currentPage === 1 && currentFilter === 'all' && !searchQuery) {
                 html += `
-                <div class="ad-container ad-container-in-grid">
+                <div class="ad-container ad-container-in-grid" style="min-height:120px;contain:layout style;">
                     <div class="ad-label">ADVERTISEMENT</div>
                     <!-- 101Di2 -->
                     <ins class="adsbygoogle"
-                         style="display:block"
+                         style="display:block;min-height:100px;"
                          data-ad-client="ca-pub-2738438146721203"
                          data-ad-slot="2424772370"
                          data-ad-format="auto"
@@ -122,9 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         gameGrid.innerHTML = html;
 
-        // Initialize the injected Ad
+        // Initialize the injected Ad — use requestAnimationFrame for reliable DOM readiness
         if (currentPage === 1 && currentFilter === 'all' && !searchQuery) {
-            try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            requestAnimationFrame(() => {
+                const adIns = gameGrid.querySelector('.ad-container-in-grid ins.adsbygoogle');
+                if (adIns && !adIns.dataset.adsbygoogleStatus) {
+                    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                }
+            });
         }
 
         if (paginationControls) {

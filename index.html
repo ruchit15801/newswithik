@@ -8,6 +8,13 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//googleads.g.doubleclick.net">
+    <link rel="dns-prefetch" href="//adservice.google.com">
+    <link rel="dns-prefetch" href="//tpc.googlesyndication.com">
+    <!-- Preconnect to ad servers (establishes TCP+TLS early for faster ad fill) -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+    <link rel="preconnect" href="https://tpc.googlesyndication.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play News | Best Free Online & Mobile Games</title>
     <meta name="description" content="Play 100+ best free online games on Play News. No downloads required. High-quality arcade, puzzle, action, racing, strategy and sports games for instant fun!">
@@ -72,11 +79,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Preload critical CSS -->
-    <link rel="preload" href="css/style.css?v=9" as="style">
+    <link rel="preload" href="css/style.css?v=10" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" as="style">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=9">
+    <link rel="stylesheet" href="css/style.css?v=10">
 </head>
 
 <body>
@@ -144,11 +151,11 @@
         <main class="container">
 
             <!-- AD 1: Top Ad -->
-            <div class="ad-container">
+            <div class="ad-container" style="min-height:120px;contain:layout style;">
                 <div class="ad-label">ADVERTISEMENT</div>
                 <!-- 101Di1 -->
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:block;min-height:100px;"
                      data-ad-client="ca-pub-2738438146721203"
                      data-ad-slot="1574725133"
                      data-ad-format="auto"
@@ -206,11 +213,11 @@
             </div>
 
             <!-- AD 3: Bottom Ad (Home Page) -->
-            <div class="ad-container" style="margin-top: 3rem;">
+            <div class="ad-container" style="margin-top: 3rem;min-height:120px;contain:layout style;">
                 <div class="ad-label">ADVERTISEMENT</div>
                 <!-- 101Di3 -->
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:block;min-height:100px;"
                      data-ad-client="ca-pub-2738438146721203"
                      data-ad-slot="5733461990"
                      data-ad-format="auto"
@@ -303,7 +310,7 @@
                 }
             });
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js?v=9')
+                navigator.serviceWorker.register('sw.js?v=10')
                     .then(() => console.log('PWA: SW registered.'))
                     .catch(err => console.log('PWA: SW failed.', err));
             });

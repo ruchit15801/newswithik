@@ -207,10 +207,40 @@ header{
   flex-direction: column;
   align-items: center;
   background: var(--s2);
-  border-radius: var(--rad);
+  border-radius: var(--r-sm);
   padding: 1rem 0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  border: 1px solid var(--border);
+  border: 1px solid var(--gold-border);
+  contain: layout style;
+  position: relative;
+  overflow: hidden;
+}
+/* Subtle shimmer while ad loads */
+.ad-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255,215,0,0.03) 45%,
+    rgba(255,215,0,0.06) 50%,
+    rgba(255,215,0,0.03) 55%,
+    transparent 70%
+  );
+  animation: adShimmer 2.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Stop shimmer once ad has filled */
+.ad-container:has(ins[data-ad-status="filled"])::before,
+.ad-container:has(iframe)::before {
+  animation: none;
+  opacity: 0;
+}
+@keyframes adShimmer {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
 }
 .ad-container-in-grid {
   grid-column: 1 / -1;
@@ -221,14 +251,18 @@ header{
   font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #777;
+  color: #555;
   margin-bottom: 0.75rem;
   font-weight: 600;
+  position: relative;
+  z-index: 1;
 }
 .ad-container ins.adsbygoogle {
   width: 100%;
   min-height: 100px;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Controls ── */

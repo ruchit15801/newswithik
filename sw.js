@@ -1,7 +1,7 @@
 /* ─── Play News — Performance Service Worker v9 ─── */
-const CACHE_NAME    = 'playnews-v9';
-const FONT_CACHE    = 'vhcta-fonts-v9';
-const IMG_CACHE     = 'vhcta-images-v9';
+const CACHE_NAME    = 'playnews-v10';
+const FONT_CACHE    = 'vhcta-fonts-v10';
+const IMG_CACHE     = 'vhcta-images-v10';
 
 // Core shell — always cache-first
 const SHELL_ASSETS = [
@@ -43,6 +43,17 @@ self.addEventListener('activate', event => {
 // ── Fetch: smart routing ──
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
+
+    // ★ NEVER intercept ad-related requests — let them pass through to network
+    const adDomains = ['pagead2.googlesyndication.com', 'googleads.g.doubleclick.net',
+                       'tpc.googlesyndication.com', 'www.googletagmanager.com',
+                       'adservice.google.com', 'www.googleadservices.com',
+                       'fundingchoicesmessages.google.com', 'ep1.adtrafficquality.google',
+                       'ep2.adtrafficquality.google'];
+    if (adDomains.some(d => url.hostname === d || url.hostname.endsWith('.' + d))) {
+        return; // let the browser handle it natively
+    }
+
 
     // 1. Google Fonts — Cache-first (long-lived)
     if (url.origin === 'https://fonts.googleapis.com' || url.origin === 'https://fonts.gstatic.com') {
