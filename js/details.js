@@ -13,11 +13,14 @@ window.handlePlayClick = function(gameId) {
     let coins = getCoins();
     const btn = document.getElementById('play-btn-main');
     
+    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    const playUrl = isLocal ? `/play.html?id=${gameId}` : `/play?id=${gameId}`;
+
     // Cost to play is 10 coins
     if (coins >= 10) {
         // Deduct 10 coins and play!
         setCoins(coins - 10);
-        window.location.href = '/play.html?id=' + gameId;
+        window.location.href = playUrl;
     } else {
         // Not enough coins! Show Rewarded Ad to earn 10 coins
         if (typeof window.adBreak === 'function') {
@@ -25,6 +28,7 @@ window.handlePlayClick = function(gameId) {
             let adFailed = setTimeout(() => {
                 setCoins(getCoins() + 10);
                 if (btn) btn.innerHTML = 'Play Now (-10 🪙)';
+                window.location.href = playUrl;
             }, 3500);
 
             window.adBreak({
@@ -36,26 +40,25 @@ window.handlePlayClick = function(gameId) {
                     showAdFn();
                 },
                 adDismissed: function() {
-                    alert('You must watch the full video to earn 🪙 coins!');
-                    if (btn) btn.innerHTML = 'Watch Ad for Coins (+10 🪙)';
+                    // Do nothing here, we'll let adBreakDone handle the navigation
+                    // so the user experience is smooth even if they skip.
                 },
                 adViewed: function() {
                     setCoins(getCoins() + 10);
-                    // Automatically play after rewarding to keep it smooth!
+                    // Automatically deduct for the game cost
                     setCoins(getCoins() - 10);
-                    window.location.href = '/play.html?id=' + gameId;
                 },
                 adBreakDone: function(placementInfo) {
                     // Safety reset
-                    if (btn && btn.innerHTML === 'Loading Ad...') {
-                         btn.innerHTML = 'Watch Ad for Coins (+10 🪙)';
-                    }
+                    if (btn) btn.innerHTML = 'Loading Game...';
+                    // Always transition to game so the user isn't stuck on details page!
+                    window.location.href = playUrl;
                 }
             });
         } else {
             // AdBlocker fallback: give free coins so they aren't stuck
             setCoins(getCoins() + 10);
-            if (btn) btn.innerHTML = 'Play Now (-10 🪙)';
+            window.location.href = playUrl;
         }
     }
 };
@@ -160,15 +163,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
     
-    // Initialize injected ads — use requestAnimationFrame for reliable DOM readiness
-    requestAnimationFrame(() => {
+    // Initialize injected ads — use a slight delay for reliable DOM readiness and execution order
+    setTimeout(() => {
         const adSlots = detailsContent.querySelectorAll('ins.adsbygoogle');
         adSlots.forEach(slot => {
-            if (!slot.dataset.adsbygoogleStatus) {
+            if (!slot.hasAttribute('data-adsbygoogle-status')) {
                 try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
             }
         });
-    });
+    }, 300);
     
     // Update Page Title & SEO Meta Tags
     const fullTitle = `Play ${game.title} Online - Free Games | VHCTA Games`;

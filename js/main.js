@@ -122,14 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         gameGrid.innerHTML = html;
 
-        // Initialize the injected Ad — use requestAnimationFrame for reliable DOM readiness
+        // Initialize the injected Ad — use a delay for reliable DOM readiness
         if (currentPage === 1 && currentFilter === 'all' && !searchQuery) {
-            requestAnimationFrame(() => {
+            setTimeout(() => {
                 const adIns = gameGrid.querySelector('.ad-container-in-grid ins.adsbygoogle');
-                if (adIns && !adIns.dataset.adsbygoogleStatus) {
+                if (adIns && !adIns.hasAttribute('data-adsbygoogle-status')) {
                     try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
                 }
-            });
+            }, 300);
         }
 
         if (paginationControls) {

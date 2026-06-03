@@ -265,6 +265,11 @@ header{
   z-index: 1;
 }
 
+/* Hide the ad container completely if AdSense fails to fill it with an ad */
+.ad-container:has(ins[data-ad-status="unfilled"]) {
+  display: none !important;
+}
+
 /* ── Controls ── */
 .controls{
   margin-top:16px;display:flex;flex-direction:column;gap:12px;
