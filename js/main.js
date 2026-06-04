@@ -228,6 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetUrl = isLocal ? `/game-details.html?slug=${game.slug || game.id}` : `/games/${game.slug || game.id}`;
 
         let navigated = false;
+        let adBreakFired = false;
+
         function goNext() {
             if (navigated) return;
             navigated = true;
@@ -235,13 +237,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (typeof window.adBreak === 'function') {
+            // Safety fallback ONLY fires if adBreak never calls adBreakDone at all
+            // (e.g. SDK failed to load). If ad shows and user closes it,
+            // adBreakDone handles navigation — no race condition.
+            var adFallbackTimer = setTimeout(function() {
+                if (!adBreakFired) goNext();
+            }, 4000);
+
             window.adBreak({
                 type: 'next',
                 name: 'browse_game',
-                adBreakDone: goNext
+                beforeAd: function() {
+                    // Ad is about to show — clear fallback timer, wait for user to close ad
+                    clearTimeout(adFallbackTimer);
+                },
+                adBreakDone: function() {
+                    adBreakFired = true;
+                    clearTimeout(adFallbackTimer);
+                    // Navigate ONLY after ad is dismissed/viewed/done
+                    goNext();
+                }
             });
-            // Fallback in case adBreak fails to trigger callback
-            setTimeout(goNext, 3000);
         } else {
             goNext();
         }

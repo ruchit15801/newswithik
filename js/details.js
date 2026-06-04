@@ -8,59 +8,115 @@ function setCoins(amount) {
     if (balanceAmountEl) balanceAmountEl.textContent = amount;
 }
 
-// Global function for handling "Play Now" click with Rewarded Ad & Coins
-window.handlePlayClick = function(gameId) {
-    let coins = getCoins();
-    const btn = document.getElementById('play-btn-main');
-    
-    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-    const playUrl = isLocal ? `/play.html?id=${gameId}` : `/play?id=${gameId}`;
+// ── H5 Ad SDK Ready State ──────────────────────────────────────────────────
+// adConfig's onReady fires when SDK is initialized. We track this so reward
+// ad calls don't happen before the SDK is ready (which causes silent failures).
+var _adSdkReady = false;
+var _pendingAdCall = null;
 
-    // Cost to play is 10 coins
-    if (coins >= 10) {
-        // Deduct 10 coins and play!
-        setCoins(coins - 10);
-        window.location.href = playUrl;
-    } else {
-        // Not enough coins! Show Rewarded Ad to earn 10 coins
+// Override adConfig to capture onReady
+(function() {
+    var _originalAdConfig = window.adConfig;
+    window.adConfig = function(opts) {
+        var userOnReady = opts.onReady;
+        opts.onReady = function() {
+            _adSdkReady = true;
+            if (typeof userOnReady === 'function') userOnReady();
+            // Fire any queued ad call
+            if (typeof _pendingAdCall === 'function') {
+                var fn = _pendingAdCall;
+                _pendingAdCall = null;
+                fn();
+            }
+        };
+        if (typeof _originalAdConfig === 'function') _originalAdConfig(opts);
+    };
+})();
+
+// Safe adBreak wrapper — queues the call if SDK not ready yet
+function safeAdBreak(opts) {
+    function doBreak() {
         if (typeof window.adBreak === 'function') {
-            // Fallback timer just in case adBreak is completely stubbed
-            let adFailed = setTimeout(() => {
-                setCoins(getCoins() + 10);
-                if (btn) btn.innerHTML = 'Play Now (-10 🪙)';
-                window.location.href = playUrl;
-            }, 3500);
-
-            window.adBreak({
-                type: 'reward',
-                name: 'earn_coins_reward',
-                beforeReward: function(showAdFn) {
-                    clearTimeout(adFailed);
-                    if (btn) btn.innerHTML = 'Loading Ad...';
-                    showAdFn();
-                },
-                adDismissed: function() {
-                    // Do nothing here, we'll let adBreakDone handle the navigation
-                    // so the user experience is smooth even if they skip.
-                },
-                adViewed: function() {
-                    setCoins(getCoins() + 10);
-                    // Automatically deduct for the game cost
-                    setCoins(getCoins() - 10);
-                },
-                adBreakDone: function(placementInfo) {
-                    // Safety reset
-                    if (btn) btn.innerHTML = 'Loading Game...';
-                    // Always transition to game so the user isn't stuck on details page!
-                    window.location.href = playUrl;
-                }
-            });
-        } else {
-            // AdBlocker fallback: give free coins so they aren't stuck
-            setCoins(getCoins() + 10);
-            window.location.href = playUrl;
+            window.adBreak(opts);
+        } else if (typeof opts.adBreakDone === 'function') {
+            opts.adBreakDone({ breakStatus: 'noAdPreloaded' });
         }
     }
+    if (_adSdkReady) {
+        doBreak();
+    } else {
+        _pendingAdCall = doBreak;
+        // Ultimate fallback: if SDK never fires onReady within 4s, proceed anyway
+        setTimeout(function() {
+            if (!_adSdkReady) {
+                _adSdkReady = true;
+                if (typeof _pendingAdCall === 'function') {
+                    var fn = _pendingAdCall;
+                    _pendingAdCall = null;
+                    fn();
+                }
+            }
+        }, 4000);
+    }
+}
+
+// Global function for handling "Play Now" click with Rewarded Ad & Coins
+window.handlePlayClick = function(gameId) {
+    var coins = getCoins();
+    var btn = document.getElementById('play-btn-main');
+
+    var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    var playUrl = isLocal ? '/play.html?id=' + gameId : '/play?id=' + gameId;
+
+    // Enough coins → deduct and play directly
+    if (coins >= 10) {
+        setCoins(coins - 10);
+        window.location.href = playUrl;
+        return;
+    }
+
+    // Not enough coins → show Rewarded Ad
+    if (btn) btn.textContent = 'Loading Ad...';
+
+    var adViewed = false;
+
+    // Fallback: if SDK completely fails, give coins and navigate
+    var hardFallback = setTimeout(function() {
+        if (!adViewed) setCoins(getCoins() + 10);
+        window.location.href = playUrl;
+    }, 8000);
+
+    safeAdBreak({
+        type: 'reward',
+        name: 'earn_coins_reward',
+        beforeReward: function(showAdFn) {
+            // SDK is ready and an ad is available — show it
+            clearTimeout(hardFallback);
+            if (btn) btn.textContent = 'Watch Ad...';
+            showAdFn();
+        },
+        adDismissed: function() {
+            // User skipped — don't award coins, but also don't navigate yet
+            // adBreakDone will handle the final state
+            if (btn) btn.textContent = 'Watch Ad to Earn Coins (+10 🪙)';
+        },
+        adViewed: function() {
+            // Full view — award coins (minus 10 for this game play)
+            adViewed = true;
+            setCoins(getCoins() + 10 - 10); // +10 earned, -10 spent = net 0 cost
+        },
+        adBreakDone: function(placementInfo) {
+            clearTimeout(hardFallback);
+            if (adViewed) {
+                // Reward was earned — go to game
+                if (btn) btn.textContent = 'Loading Game...';
+                window.location.href = playUrl;
+            } else {
+                // Ad was skipped / no ad filled — reset button, don't navigate
+                if (btn) btn.innerHTML = 'Watch Ad for Coins (+10 🪙)';
+            }
+        }
+    });
 };
 
 document.addEventListener('DOMContentLoaded', () => {
