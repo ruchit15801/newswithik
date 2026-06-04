@@ -1,12 +1,6 @@
-// --- COIN SYSTEM LOGIC ---
-function getCoins() {
-    return parseInt(localStorage.getItem('vhcta_coins'), 10) || 5;
-}
-function setCoins(amount) {
-    localStorage.setItem('vhcta_coins', amount);
-    const balanceAmountEl = document.getElementById('balance-amount');
-    if (balanceAmountEl) balanceAmountEl.textContent = amount;
-}
+// --- COIN SYSTEM ---
+// getCoins() and setCoins() are provided by /js/coins.js (loaded before this file)
+// CoinSystem.add(n), CoinSystem.spend(n), CoinSystem.get() also available
 
 // ── H5 Ad SDK Ready State ──────────────────────────────────────────────────
 // adConfig's onReady fires when SDK is initialized. We track this so reward
@@ -75,14 +69,13 @@ window.handlePlayClick = function(gameId) {
         return;
     }
 
-    // Not enough coins → show Rewarded Ad
+    // Not enough coins → show Rewarded Ad to earn coins
     if (btn) btn.textContent = 'Loading Ad...';
 
     var adViewed = false;
 
-    // Fallback: if SDK completely fails, give coins and navigate
+    // Hard fallback: SDK fails entirely → just let user play
     var hardFallback = setTimeout(function() {
-        if (!adViewed) setCoins(getCoins() + 10);
         window.location.href = playUrl;
     }, 8000);
 
@@ -90,29 +83,28 @@ window.handlePlayClick = function(gameId) {
         type: 'reward',
         name: 'earn_coins_reward',
         beforeReward: function(showAdFn) {
-            // SDK is ready and an ad is available — show it
             clearTimeout(hardFallback);
             if (btn) btn.textContent = 'Watch Ad...';
             showAdFn();
         },
         adDismissed: function() {
-            // User skipped — don't award coins, but also don't navigate yet
-            // adBreakDone will handle the final state
-            if (btn) btn.textContent = 'Watch Ad to Earn Coins (+10 🪙)';
+            // User skipped — reset button, keep them on page
+            if (btn) btn.innerHTML = 'Watch Ad for Coins (+10 🪙)';
         },
         adViewed: function() {
-            // Full view — award coins (minus 10 for this game play)
+            // Full ad watched → award exactly +10 coins
             adViewed = true;
-            setCoins(getCoins() + 10 - 10); // +10 earned, -10 spent = net 0 cost
+            CoinSystem.add(10);
         },
-        adBreakDone: function(placementInfo) {
+        adBreakDone: function() {
             clearTimeout(hardFallback);
             if (adViewed) {
-                // Reward was earned — go to game
+                // Spend 10 to play (user just earned 10, net = 0)
+                CoinSystem.spend(10);
                 if (btn) btn.textContent = 'Loading Game...';
                 window.location.href = playUrl;
             } else {
-                // Ad was skipped / no ad filled — reset button, don't navigate
+                // Ad skipped — stay on page, don't deduct
                 if (btn) btn.innerHTML = 'Watch Ad for Coins (+10 🪙)';
             }
         }
@@ -120,6 +112,8 @@ window.handlePlayClick = function(gameId) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // coins.js already synced the header balance on load — nothing to do here
+
     const detailsContent = document.getElementById('details-content');
     
     // 1. Get Slug from URL Path or Query Params

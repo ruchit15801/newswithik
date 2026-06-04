@@ -221,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         recent = recent.filter(id => id !== key);
         recent.unshift(key);
         localStorage.setItem('recent_games', JSON.stringify(recent.slice(0, 8)));
-        localStorage.setItem('vhcta_last_play', Date.now());
 
         // Detect environment: localhost uses query param; production uses clean /games/slug
         const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -263,40 +262,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // ── Coin system (safe — elements may not exist) ──
-    const balanceAmountEl      = document.getElementById('balance-amount');
-    const coinBalanceContainer = document.querySelector('.coin-balance');
+    // ── Coin system: display is managed by coins.js ──
+    // CoinSystem is available globally from /js/coins.js
+    // coins.js already set the header balance on DOMContentLoaded
 
-    if (balanceAmountEl) {
-        let coins = parseInt(localStorage.getItem('vhcta_coins'), 10) || 5;
-        balanceAmountEl.textContent = coins;
-
-        function addCoins(amount) {
-            coins += amount;
-            localStorage.setItem('vhcta_coins', coins);
-            balanceAmountEl.textContent = coins;
-
-            if (coinBalanceContainer) {
-                coinBalanceContainer.classList.remove('coin-animate');
-                void coinBalanceContainer.offsetWidth;
-                coinBalanceContainer.classList.add('coin-animate');
-
-                const floatEl = document.createElement('div');
-                floatEl.className = 'coin-float';
-                floatEl.textContent = `+${amount}`;
-                coinBalanceContainer.appendChild(floatEl);
-                setTimeout(() => floatEl.remove(), 1500);
-            }
-        }
-
-        const lastPlayed = localStorage.getItem('vhcta_last_play');
-        if (lastPlayed) {
-            const timeDiff = Math.floor((Date.now() - parseInt(lastPlayed, 10)) / 1000);
-            const earned   = Math.min(Math.floor(timeDiff / 3), 100);
-            if (earned >= 5) setTimeout(() => addCoins(earned), 800);
-            localStorage.removeItem('vhcta_last_play');
-        }
-    }
     // ── Categories Drag to Scroll ──
     const catWrapper = document.querySelector('.categories-wrapper');
     if (catWrapper) {
