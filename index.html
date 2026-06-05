@@ -161,7 +161,7 @@
         <main class="container">
 
             <!-- AD 1: Top Ad -->
-            <div class="ad-container" style="min-height:120px;contain:layout style;">
+            <div class="ad-container" style="min-height:120px;">
                 <div class="ad-label">ADVERTISEMENT</div>
                 <!-- 101Di1 -->
                 <ins class="adsbygoogle"
@@ -169,7 +169,7 @@
                      data-ad-client="ca-pub-2738438146721203"
                      data-ad-slot="1574725133"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="false"></ins>
                 <script>
                      (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -223,7 +223,7 @@
             </div>
 
             <!-- AD 3: Bottom Ad (Home Page) -->
-            <div class="ad-container" style="margin-top: 3rem;min-height:120px;contain:layout style;">
+            <div class="ad-container" style="margin-top: 3rem;min-height:120px;">
                 <div class="ad-label">ADVERTISEMENT</div>
                 <!-- 101Di3 -->
                 <ins class="adsbygoogle"
@@ -231,7 +231,7 @@
                      data-ad-client="ca-pub-2738438146721203"
                      data-ad-slot="5733461990"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="false"></ins>
                 <script>
                      (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -361,23 +361,21 @@
         <button class="sticky-close" onclick="document.getElementById('sticky-ad-bar').remove();" title="Close ad">✕</button>
         <div id="sticky-ad-wrap">
             <ins class="adsbygoogle"
-                 style="display:block;"
+                 style="display:block;height:50px;"
                  data-ad-client="ca-pub-2738438146721203"
-                 data-ad-slot="1574725133"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+                 data-ad-slot="1574725133"></ins>
         </div>
     </div>
     <script>
-        // Initialize sticky ad AFTER page load to avoid conflicts with H5 Ad API
-        window.addEventListener('load', function() {
+        // Initialize sticky ad safely after a small delay
+        setTimeout(function() {
             try {
                 var ins = document.querySelector('#sticky-ad-wrap ins.adsbygoogle');
                 if (ins && !ins.getAttribute('data-adsbygoogle-status')) {
                     (window.adsbygoogle = window.adsbygoogle || []).push({});
                 }
             } catch(e) {}
-        });
+        }, 1000);
     </script>
 </body>
 

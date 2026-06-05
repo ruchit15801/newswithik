@@ -211,9 +211,7 @@ header{
   padding: 1rem 0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   border: 1px solid var(--gold-border);
-  contain: layout style;
   position: relative;
-  overflow: hidden;
 }
 /* Subtle shimmer while ad loads */
 .ad-container::before {
@@ -239,8 +237,9 @@ header{
   opacity: 0;
 }
 @keyframes adShimmer {
-  0%   { transform: translateX(-120%); }
-  100% { transform: translateX(120%); }
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
 }
 .ad-container-in-grid {
   grid-column: 1 / -1;

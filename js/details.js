@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     detailsContent.innerHTML = `
         <!-- AD 3: Top of Details Card -->
-        <div class="ad-container" style="margin: 0 auto 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent; min-height:120px; contain:layout style;">
+        <div class="ad-container" style="margin: 0 auto 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent; min-height:120px;">
             <div class="ad-label">ADVERTISEMENT</div>
             <!-- 101Di3 -->
             <ins class="adsbygoogle"
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  data-ad-client="ca-pub-2738438146721203"
                  data-ad-slot="5733461990"
                  data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+                 data-full-width-responsive="false"></ins>
         </div>
 
         <div class="game-hero">
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <!-- AD 3: Middle of Details Card -->
-        <div class="ad-container" style="margin: 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent; min-height:120px; contain:layout style;">
+        <div class="ad-container" style="margin: 1.5rem auto; box-shadow: none; border-color: transparent; background: transparent; min-height:120px;">
             <div class="ad-label">ADVERTISEMENT</div>
             <!-- 101Di3 -->
             <ins class="adsbygoogle"
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  data-ad-client="ca-pub-2738438146721203"
                  data-ad-slot="5733461990"
                  data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+                 data-full-width-responsive="false"></ins>
         </div>
 
         <div class="description-box">

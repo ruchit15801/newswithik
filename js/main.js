@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Insert AD 2 after the first game ONLY on the first page when showing all games
             if (i === 0 && currentPage === 1 && currentFilter === 'all' && !searchQuery) {
                 html += `
-                <div class="ad-container ad-container-in-grid" style="min-height:120px;contain:layout style;">
+                <div class="ad-container ad-container-in-grid" style="min-height:120px;">
                     <div class="ad-label">ADVERTISEMENT</div>
                     <!-- 101Di2 -->
                     <ins class="adsbygoogle"
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                          data-ad-client="ca-pub-2738438146721203"
                          data-ad-slot="2424772370"
                          data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
+                         data-full-width-responsive="false"></ins>
                 </div>`;
             }
         });
