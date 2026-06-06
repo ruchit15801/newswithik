@@ -258,53 +258,7 @@
         }
     </script>
 
-    <!-- STICKY BOTTOM AD (Manual anchor — Auto Ads won't show sticky when H5 API is active) -->
-    <style>
-        #sticky-ad-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 8888;
-            background: rgba(10,10,18,0.96);
-            border-top: 1px solid rgba(201,168,76,0.18);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px 0 env(safe-area-inset-bottom, 0);
-            min-height: 60px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        #sticky-ad-bar .sticky-close {
-            position: absolute;
-            top: 4px; right: 8px;
-            background: none; border: none;
-            color: rgba(255,255,255,0.3);
-            font-size: 0.7rem; cursor: pointer;
-            line-height: 1; padding: 2px 4px;
-        }
-        #sticky-ad-bar .sticky-close:hover { color: rgba(255,255,255,0.7); }
-        #sticky-ad-wrap { width: 100%; max-width: 728px; min-height: 50px; }
-        body { padding-bottom: 70px; }
-    </style>
-    <div id="sticky-ad-bar">
-        <button class="sticky-close" onclick="document.getElementById('sticky-ad-bar').remove();" title="Close ad">✕</button>
-        <div id="sticky-ad-wrap">
-            <ins class="adsbygoogle"
-                 style="display:block;height:50px;"
-                 data-ad-client="ca-pub-2738438146721203"
-                 data-ad-slot="5733461990"></ins>
-        </div>
-    </div>
-    <script>
-        setTimeout(function() {
-            try {
-                var ins = document.querySelector('#sticky-ad-wrap ins.adsbygoogle');
-                if (ins && !ins.getAttribute('data-adsbygoogle-status')) {
-                    (window.adsbygoogle = window.adsbygoogle || []).push({});
-                }
-            } catch(e) {}
-        }, 1000);
-    </script>
+
 </body>
 
 </html>
